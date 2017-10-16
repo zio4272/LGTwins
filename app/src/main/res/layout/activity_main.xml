@@ -13,10 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="#FFFFFF"
         android:gravity="bottom"
-
         sothree:umanoPanelHeight="68dp"
-        sothree:umanoShadowHeight="4dp">
+        sothree:umanoShadowHeight="1dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -26,43 +26,98 @@
             android:textSize="16sp" />
 
 
-
-
-
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
+
             <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher_round"/>
+                android:src="@drawable/emblem" />
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|top"
-                android:text="The Awesome Sliding Up Panel"
-                android:textSize="16sp" />
-
-
+            <!--<TextView-->
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:text="The Awesome Sliding Up Panel"
+            android:textSize="16sp" />
 
             <ListView
                 android:id="@+id/postListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:layout_height="wrap_content">
 
             </ListView>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+
+
+
         </LinearLayout>
+
 
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
@@ -79,6 +134,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#CCCCCC"
             android:orientation="horizontal">
 
             <LinearLayout

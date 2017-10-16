@@ -17,14 +17,14 @@ import kr.co.tjeit.lgtwins.data.Post;
  * Created by the on 2017-10-16.
  */
 
-public class MainAdapter extends ArrayAdapter<Post> {
+public class PostAdapter extends ArrayAdapter<Post> {
 
     Context mContext;
     List<Post> mList;
     LayoutInflater inf;
 
-    public MainAdapter(Context context, List<Post> list) {
-        super(context, R.layout.main_list_item, list);
+    public PostAdapter(Context context, List<Post> list) {
+        super(context, R.layout.post_list_item, list);
         mContext = context;
         mList = list;
         inf = LayoutInflater.from(mContext);
@@ -36,7 +36,7 @@ public class MainAdapter extends ArrayAdapter<Post> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         if (row == null) {
-            row = inf.inflate(R.layout.main_list_item, null);
+            row = inf.inflate(R.layout.post_list_item, null);
 
         }
         return row;
@@ -44,6 +44,6 @@ public class MainAdapter extends ArrayAdapter<Post> {
 
     @Override
     public int getCount() {
-        return 5;
+        return 2;
     }
 }
