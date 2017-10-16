@@ -28,7 +28,6 @@ public class PlayerAdatper extends ArrayAdapter<Player> {
         mContext = context;
         mList = list;
         inf = LayoutInflater.from(mContext);
-
     }
 
     @NonNull
