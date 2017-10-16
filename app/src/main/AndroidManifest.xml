@@ -17,8 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SplashActivity" />
-        <activity
-            android:name=".PostPopupActivity"/>
+        <activity android:name=".PostPopupActivity"/>
         <activity android:name=".PostDetailViewActivity"></activity>
     </application>
 

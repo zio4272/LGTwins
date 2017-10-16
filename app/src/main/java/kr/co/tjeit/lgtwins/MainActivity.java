@@ -15,6 +15,7 @@ import java.util.List;
 
 import kr.co.tjeit.lgtwins.adapter.PostAdapter;
 import kr.co.tjeit.lgtwins.data.Post;
+import kr.co.tjeit.lgtwins.util.GlobalData;
 
 
 public class MainActivity extends BaseActivity {
@@ -80,6 +81,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public void setValues() {
 
+        GlobalData.initGlobalData();
+
 //        int height = getWindowManager().getDefaultDisplay().getHeight(); // 화면의 전체 사이즈
 //        slidinglayout.setPanelHeight(height / 5); // 전체사이즈 나누기 5
         slidinglayout.setAnchorPoint(0.7f); // 1.0f = 100% , 0.7f = 70% 업
@@ -89,6 +92,9 @@ public class MainActivity extends BaseActivity {
 
         mAdapter = new PostAdapter(mContext, postList);
         postListView.setAdapter(mAdapter);
+
+        postList.add(GlobalData.posts.get(GlobalData.posts.size()-1));
+        postList.add(GlobalData.posts.get(GlobalData.posts.size()-2));
 
 
     }

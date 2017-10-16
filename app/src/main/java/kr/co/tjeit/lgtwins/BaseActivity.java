@@ -11,11 +11,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     Context mContext = this;
 
-    public abstract void bindView();
-
     public abstract void setupEvent();
 
     public abstract void setValues();
 
+    public abstract void bindView();
 
 }

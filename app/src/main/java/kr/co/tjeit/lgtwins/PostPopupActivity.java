@@ -1,10 +1,13 @@
 package kr.co.tjeit.lgtwins;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -13,6 +16,7 @@ import java.util.List;
 
 import kr.co.tjeit.lgtwins.adapter.PostAdapter;
 import kr.co.tjeit.lgtwins.data.Post;
+import kr.co.tjeit.lgtwins.util.GlobalData;
 
 public class PostPopupActivity extends BaseActivity {
 
@@ -48,21 +52,33 @@ public class PostPopupActivity extends BaseActivity {
     @Override
     public void setupEvent() {
 
+        postListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(mContext, PostDetailViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
     public void setValues() {
+
+        GlobalData.initGlobalData();
 
         setTitle("트윈스 뉴스");
 
         mAdapter = new PostAdapter(mContext, postList);
         postListView.setAdapter(mAdapter);
 
-        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        int width = (int) (display.getWidth() * 0.99); //Display 사이즈의 90%
-        int height = (int) (display.getHeight() * 0.90);  //Display 사이즈의 90%
-        getWindow().getAttributes().width = width;
-        getWindow().getAttributes().height = height;
+//        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+//        int width = (int) (display.getWidth() * 0.99); //Display 사이즈의 90%
+//        int height = (int) (display.getHeight() * 0.90);  //Display 사이즈의 90%
+//        getWindow().getAttributes().width = width;
+//        getWindow().getAttributes().height = height;
+
+        postList.addAll(GlobalData.posts);
 
 
     }

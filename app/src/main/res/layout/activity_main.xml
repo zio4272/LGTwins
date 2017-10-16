@@ -32,7 +32,6 @@
             android:orientation="vertical">
 
 
-
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -72,49 +71,6 @@
                 android:layout_height="wrap_content"
                 android:text="더보기" />
 
-            <Button
-                android:id="@+id/seeMoreBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="더보기" />
-
-
-            <Button
-                android:id="@+id/seeMoreBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="더보기" />
-
-
-            <Button
-                android:id="@+id/seeMoreBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="더보기" />
-
-
-            <Button
-                android:id="@+id/seeMoreBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="더보기" />
-
-
-            <Button
-                android:id="@+id/seeMoreBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="더보기" />
-
-
-            <Button
-                android:id="@+id/seeMoreBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="더보기" />
-
-
-
 
         </LinearLayout>
 
@@ -134,7 +90,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#CCCCCC"
+            android:background="#232323"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -153,7 +109,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="일정/결과" />
+                    android:text="일정/결과"
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
@@ -173,7 +130,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="팀순위" />
+                    android:text="팀순위"
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
@@ -193,7 +151,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="홈" />
+                    android:text="홈"
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
@@ -213,7 +172,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="선수단" />
+                    android:text="선수단"
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
@@ -233,7 +193,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
