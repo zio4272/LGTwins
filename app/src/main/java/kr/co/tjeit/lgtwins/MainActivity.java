@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.sothree.slidinguppanel.ScrollableViewHelper;
@@ -26,6 +27,10 @@ public class MainActivity extends BaseActivity {
     private com.sothree.slidinguppanel.SlidingUpPanelLayout slidinglayout;
     private android.widget.ListView postListView;
     private android.widget.Button seeMoreBtn;
+    private android.widget.LinearLayout playerMenu;
+    private LinearLayout playerLayout;
+    private LinearLayout homeLayout;
+    private LinearLayout homeMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,35 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupEvent() {
+
+        playerMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.playerMenu:
+                        playerLayout.setVisibility(View.VISIBLE);
+                        slidinglayout.setVisibility(View.GONE);
+                        break;
+
+
+                }
+            }
+        });
+
+        homeMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.homeMenu:
+                        playerLayout.setVisibility(View.GONE);
+                        slidinglayout.setVisibility(View.VISIBLE);
+                        break;
+
+
+                }
+            }
+        });
+
 
         seeMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,9 +135,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void bindView() {
+        this.playerMenu = (LinearLayout) findViewById(R.id.playerMenu);
+        this.homeMenu = (LinearLayout) findViewById(R.id.homeMenu);
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
         this.postListView = (ListView) findViewById(R.id.postListView);
+        this.playerLayout = (LinearLayout) findViewById(R.id.playerLayout);
     }
 
     public class NestedScrollableViewHelper extends ScrollableViewHelper {

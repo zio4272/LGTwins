@@ -8,6 +8,21 @@
     tools:context="kr.co.tjeit.lgtwins.MainActivity">
 
 
+
+    <LinearLayout
+    android:id="@+id/playerLayout"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+    <fragment
+        class="kr.co.tjeit.lgtwins.fragment.PlayerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
+
+
     <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
         android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
@@ -78,11 +93,6 @@
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E1E1E1" />
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="80dp">
@@ -136,6 +146,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/homeMenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -157,6 +168,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/playerMenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -203,6 +215,11 @@
 
 
     </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E1E1E1" />
 
 
 </LinearLayout>
