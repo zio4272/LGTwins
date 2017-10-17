@@ -1,16 +1,15 @@
 package kr.co.tjeit.lgtwins;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +18,6 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.sothree.slidinguppanel.ScrollableViewHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -27,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.co.tjeit.lgtwins.adapter.PostAdapter;
+import kr.co.tjeit.lgtwins.adapter.PostAdapter2;
 import kr.co.tjeit.lgtwins.data.Post;
 import kr.co.tjeit.lgtwins.util.GlobalData;
 
@@ -34,10 +33,16 @@ import kr.co.tjeit.lgtwins.util.GlobalData;
 public class MainActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     SliderLayout sliderLayout;
+
     PostAdapter mAdapter;
+    PostAdapter2 m2Adapter;
+
     List<Post> postList = new ArrayList<>();
+
     HashMap<String, String> HashMapForURL;
     HashMap<String, Integer> HashMapForLocalRes;
+
+    TabHost tabHost;
 
     private com.sothree.slidinguppanel.SlidingUpPanelLayout slidinglayout;
     private android.widget.ListView postListView;
@@ -48,6 +53,11 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     private LinearLayout homeMenu;
     private SliderLayout sliderImage;
     private android.widget.TextView mainText;
+    private android.widget.TabWidget tabs;
+    private LinearLayout tab1;
+    private LinearLayout tab2;
+    private android.widget.FrameLayout tabcontent;
+    private ListView postListView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +66,17 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         bindView();
         setupEvent();
         setValues();
+
+        tabHost.setup();
+        TabHost.TabSpec spec1 = tabHost.newTabSpec("tab1").setIndicator("제목1");
+        spec1.setContent(R.id.tab1);
+        tabHost.addTab(spec1);
+
+        TabHost.TabSpec spec2 = tabHost.newTabSpec("tab2").setIndicator("제목2");
+        spec2.setContent(R.id.tab2);
+        tabHost.addTab(spec2);
+
+
 
         // 이미지 슬라이드
         AddImagesUrlOnline(); // URL에 있는걸 가져와서 보여주는것
@@ -80,11 +101,9 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         HashMapForURL = new HashMap<String, String>();
 
-        HashMapForURL.put(GlobalData.twinsPhotos.get(0).getTitle() , GlobalData.twinsPhotos.get(0).getImageURL() );
-        HashMapForURL.put("2", "http://rucid.dothome.co.kr/wp-content/uploads/2017/08/20_lcw_m_03-980x980.jpg");
+        HashMapForURL.put(GlobalData.twinsPhotos.get(0).getTitle(), GlobalData.twinsPhotos.get(0).getImageURL());
         HashMapForURL.put("3", "http://www.lgchallengers.com/wp-content/uploads/2012/08/20120821_01.jpg");
-        HashMapForURL.put("4", "https://www.lgtwins.com/images/queen/twins_cheer_main.jpg");
-        HashMapForURL.put("5", "http://img.yonhapnews.co.kr/etc/inner/EN/2013/08/19/AEN20130819001300315_01_i.jpg");
+        HashMapForURL.put("4", "http://img.yonhapnews.co.kr/etc/inner/EN/2013/08/19/AEN20130819001300315_01_i.jpg");
 
     }
 
@@ -153,7 +172,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
                 // 축소될 경우
                 if (newState.name().toString().equals("Collapsed")) {
-                    slidinglayout.setScrollableViewHelper(null);
+//                    slidinglayout.setScrollableViewHelper(null);
 //
 
 
@@ -161,7 +180,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
                     // 펴질 경우
                 } else if (newState.name().equals("Expanded")) {
-                    slidinglayout.setScrollableViewHelper(new NestedScrollableViewHelper());
+//                    slidinglayout.setScrollableViewHelper(new NestedScrollableViewHelper());
                     slidinglayout.setVerticalScrollBarEnabled(true);
 
 
@@ -170,6 +189,22 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
             }
         });
+
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+                switch (s) {
+                    case "tab1":
+                        Toast.makeText(mContext, "탭1이 선택되었다", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "tab2":
+
+                        break;
+                }
+
+            }
+        });
+
 
 
     }
@@ -189,6 +224,11 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         mAdapter = new PostAdapter(mContext, postList);
         postListView.setAdapter(mAdapter);
 
+        m2Adapter = new PostAdapter2(mContext, postList);
+        postListView2.setAdapter(m2Adapter);
+
+
+
         postList.add(GlobalData.posts.get(GlobalData.posts.size() - 1));
         postList.add(GlobalData.posts.get(GlobalData.posts.size() - 2));
 
@@ -198,7 +238,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         sliderImage.setCustomAnimation(new DescriptionAnimation());
 
-        sliderImage.setDuration(3000);
+        sliderImage.setDuration(4000);
         sliderImage.startAutoCycle();
 
         sliderImage.addOnPageChangeListener(MainActivity.this);
@@ -212,7 +252,13 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.homeMenu = (LinearLayout) findViewById(R.id.homeMenu);
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
+        this.tabHost = (TabHost) findViewById(R.id.tabHost);
+        this.tabcontent = (FrameLayout) findViewById(android.R.id.tabcontent);
+        this.postListView2 = (ListView) findViewById(R.id.postListView2);
         this.postListView = (ListView) findViewById(R.id.postListView);
+        this.tab2 = (LinearLayout) findViewById(R.id.tab2);
+        this.tab1 = (LinearLayout) findViewById(R.id.tab1);
+        this.tabs = (TabWidget) findViewById(android.R.id.tabs);
         this.mainText = (TextView) findViewById(R.id.mainText);
         this.sliderImage = (SliderLayout) findViewById(R.id.sliderImage);
         this.playerLayout = (LinearLayout) findViewById(R.id.playerLayout);
@@ -239,23 +285,23 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     }
 
-    public class NestedScrollableViewHelper extends ScrollableViewHelper {
-        public int getScrollableViewScrollPosition(View scrollableView, boolean isSlidingUp) {
-            if (scrollableView instanceof NestedScrollView) {
-                if (isSlidingUp) {
-                    return scrollableView.getScrollY();
-                } else {
-                    NestedScrollView nsv = ((NestedScrollView) scrollableView);
-                    View child = nsv.getChildAt(0);
-                    return (child.getBottom() - (nsv.getHeight() + nsv.getScrollY()));
-                }
-            } else {
-                return 0;
-            }
-        }
-
-
-    }
+//    public class NestedScrollableViewHelper extends ScrollableViewHelper {
+//        public int getScrollableViewScrollPosition(View scrollableView, boolean isSlidingUp) {
+//            if (scrollableView instanceof NestedScrollView) {
+//                if (isSlidingUp) {
+//                    return scrollableView.getScrollY();
+//                } else {
+//                    NestedScrollView nsv = ((NestedScrollView) scrollableView);
+//                    View child = nsv.getChildAt(0);
+//                    return (child.getBottom() - (nsv.getHeight() + nsv.getScrollY()));
+//                }
+//            } else {
+//                return 0;
+//            }
+//        }
+//
+//
+//    }
 
 
 }

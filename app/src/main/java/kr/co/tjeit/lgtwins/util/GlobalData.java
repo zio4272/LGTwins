@@ -43,7 +43,7 @@ public class GlobalData {
         players.add(new Player());
 
         twinsPhotos.clear();
-        twinsPhotos.add(new TwinsPhoto(0,"29일 잠실 두산전 3대5", "관리자", "https://pbs.twimg.com/profile_images/619368257154211841/Ztpyxdkq.png"));
+        twinsPhotos.add(new TwinsPhoto(0,"29일 잠실 두산전 3대5", "관리자", "http://rucid.dothome.co.kr/wp-content/uploads/2017/08/20_lcw_m_03-980x980.jpg"));
 
 
     }
