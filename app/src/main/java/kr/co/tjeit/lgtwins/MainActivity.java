@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         for (String name : HashMapForURL.keySet()) {
             TextSliderView textSliderView = new TextSliderView(mContext);
-            textSliderView.description(name).image(HashMapForURL.get(name)).setScaleType(BaseSliderView.ScaleType.Fit).setOnSliderClickListener(this);
+            textSliderView.description(name).image(HashMapForURL.get(name)).setScaleType(BaseSliderView.ScaleType.CenterCrop).setOnSliderClickListener(this);
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle().putString("extra", name);
             sliderImage.addSlider(textSliderView);
@@ -77,14 +77,15 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         HashMapForURL = new HashMap<String, String>();
 
-        HashMapForURL.put("CupCake", "http://androidblog.esy.es/images/cupcake-1.png");
-        HashMapForURL.put("Donut", "http://androidblog.esy.es/images/donut-2.png");
-        HashMapForURL.put("Eclair", "http://androidblog.esy.es/images/eclair-3.png");
-        HashMapForURL.put("Froyo", "http://androidblog.esy.es/images/froyo-4.png");
-        HashMapForURL.put("GingerBread", "http://androidblog.esy.es/images/gingerbread-5.png");
+        HashMapForURL.put("1", "https://pbs.twimg.com/profile_images/619368257154211841/Ztpyxdkq.png");
+        HashMapForURL.put("2", "http://rucid.dothome.co.kr/wp-content/uploads/2017/08/20_lcw_m_03-980x980.jpg");
+        HashMapForURL.put("3", "http://www.lgchallengers.com/wp-content/uploads/2012/08/20120821_01.jpg");
+        HashMapForURL.put("4", "https://www.lgtwins.com/images/queen/twins_cheer_main.jpg");
+        HashMapForURL.put("5", "http://img.yonhapnews.co.kr/etc/inner/EN/2013/08/19/AEN20130819001300315_01_i.jpg");
 
     }
 
+    // 저장된 파일 불러오는 코드 (현재 사용 안함)
     private void AddImageUrlFormLocalRes() {
 
         HashMapForLocalRes = new HashMap<String, Integer>();
