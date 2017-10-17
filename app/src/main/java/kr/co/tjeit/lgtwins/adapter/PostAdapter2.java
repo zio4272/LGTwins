@@ -24,7 +24,7 @@ public class PostAdapter2 extends ArrayAdapter<Post> {
     LayoutInflater inf;
 
     public PostAdapter2(Context context, List<Post> list) {
-        super(context, R.layout.player_list_item, list);
+        super(context, R.layout.post_list_item2, list);
         mContext = context;
         mList = list;
         inf = LayoutInflater.from(mContext);
@@ -36,7 +36,7 @@ public class PostAdapter2 extends ArrayAdapter<Post> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         if (row == null) {
-            row = inf.inflate(R.layout.player_list_item, null);
+            row = inf.inflate(R.layout.post_list_item2, null);
 
         }
         return row;

@@ -1,8 +1,10 @@
 package kr.co.tjeit.lgtwins;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -28,6 +30,9 @@ import kr.co.tjeit.lgtwins.adapter.PostAdapter;
 import kr.co.tjeit.lgtwins.adapter.PostAdapter2;
 import kr.co.tjeit.lgtwins.data.Post;
 import kr.co.tjeit.lgtwins.util.GlobalData;
+
+import static android.R.attr.tabWidgetStyle;
+import static android.R.attr.width;
 
 
 public class MainActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
@@ -68,6 +73,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         setValues();
 
         tabHost.setup();
+
         TabHost.TabSpec spec1 = tabHost.newTabSpec("tab1").setIndicator("제목1");
         spec1.setContent(R.id.tab1);
         tabHost.addTab(spec1);
@@ -75,8 +81,6 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         TabHost.TabSpec spec2 = tabHost.newTabSpec("tab2").setIndicator("제목2");
         spec2.setContent(R.id.tab2);
         tabHost.addTab(spec2);
-
-
 
         // 이미지 슬라이드
         AddImagesUrlOnline(); // URL에 있는걸 가져와서 보여주는것
@@ -93,6 +97,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
             sliderImage.addSlider(textSliderView);
 
         }
+
 
     }
 
@@ -176,38 +181,35 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 //
 
 
-
-
                     // 펴질 경우
                 } else if (newState.name().equals("Expanded")) {
 //                    slidinglayout.setScrollableViewHelper(new NestedScrollableViewHelper());
                     slidinglayout.setVerticalScrollBarEnabled(true);
 
 
-
                 }
 
             }
         });
 
-        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String s) {
-                switch (s) {
-                    case "tab1":
-                        Toast.makeText(mContext, "탭1이 선택되었다", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "tab2":
-
-                        break;
-                }
-
-            }
-        });
-
+//        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+//            @Override
+//            public void onTabChanged(String s) {
+//                switch (s) {
+//                    case "tab1":
+//                        Toast.makeText(mContext, "탭1이 선택되었다", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case "tab2":
+//
+//                        break;
+//                }
+//
+//            }
+//        });
 
 
     }
+
 
 
     @Override
@@ -217,7 +219,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
 //        int height = getWindowManager().getDefaultDisplay().getHeight(); // 화면의 전체 사이즈
 //        slidinglayout.setPanelHeight(height / 5); // 전체사이즈 나누기 5
-        slidinglayout.setAnchorPoint(1.0f); // 1.0f = 100% , 0.7f = 70% 업
+        slidinglayout.setAnchorPoint(3.0f); // 1.0f = 100% , 0.7f = 70% 업
         slidinglayout.setPanelHeight(300); // 접혀있는 상태 기본 세로 크기
 
 
@@ -226,7 +228,6 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         m2Adapter = new PostAdapter2(mContext, postList);
         postListView2.setAdapter(m2Adapter);
-
 
 
         postList.add(GlobalData.posts.get(GlobalData.posts.size() - 1));

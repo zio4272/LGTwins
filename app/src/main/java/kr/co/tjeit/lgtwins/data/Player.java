@@ -11,7 +11,8 @@ public class Player implements Serializable {
     private int id;
     private int backNumber;
     private String name;
-    private String position;
+    private int position;
+    // 0전체 1투수 2포수 3내야수 4외야수 5육성선수
     private String useHand;
     private String profileImgURL;
 
@@ -19,7 +20,7 @@ public class Player implements Serializable {
     public Player() {
     }
 
-    public Player(int id, int backNumber, String name, String position, String useHand, String profileImgURL) {
+    public Player(int id, int backNumber, String name, int position, String useHand, String profileImgURL) {
         this.id = id;
         this.backNumber = backNumber;
         this.name = name;
@@ -52,11 +53,11 @@ public class Player implements Serializable {
         this.name = name;
     }
 
-    public String getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 

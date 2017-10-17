@@ -8,19 +8,19 @@
     tools:context="kr.co.tjeit.lgtwins.MainActivity">
 
 
-
     <LinearLayout
-    android:id="@+id/playerLayout"
-    android:visibility="gone"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1">
-    <fragment
-        class="kr.co.tjeit.lgtwins.fragment.PlayerFragment"
+        android:id="@+id/playerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone">
 
-</LinearLayout>
+        <fragment
+            class="kr.co.tjeit.lgtwins.fragment.PlayerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
@@ -29,8 +29,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#FFFFFF"
+        android:fadeScrollbars="true"
         android:gravity="bottom"
-        android:fadeScrollbars="false"
         sothree:umanoPanelHeight="38dp"
         sothree:umanoShadowHeight="1dp">
 
@@ -43,19 +43,18 @@
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/sliderImage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/mainText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="게시물의\n 제목? 내용? 이 여기옵니다."
                 android:textColor="#FF0000"
+                android:textSize="26sp"
                 android:textStyle="bold"
-                android:textSize="26sp" />
-
+                android:visibility="gone" />
 
 
         </RelativeLayout>
@@ -77,7 +76,7 @@
             <TabHost
                 android:id="@+id/tabHost"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,19 +89,17 @@
                         android:layout_height="wrap_content" />
 
                     <FrameLayout
-                        android:layout_gravity="center"
-                        android:padding="10dp"
                         android:id="@android:id/tabcontent"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:padding="10dp">
 
                         <LinearLayout
-                            android:tag="0"
                             android:id="@+id/tab1"
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:tag="0">
 
                             <ListView
                                 android:id="@+id/postListView"
@@ -111,14 +108,47 @@
 
                             </ListView>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+
+                                <LinearLayout
+                                    android:id="@+id/seeMoreLayout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="10dp">
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="더보기"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:src="@drawable/more" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
                         </LinearLayout>
 
                         <LinearLayout
-                            android:tag="1"
                             android:id="@+id/tab2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:tag="1">
 
                             <ListView
                                 android:id="@+id/postListView2"
@@ -127,16 +157,49 @@
 
                             </ListView>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+
+                                <LinearLayout
+                                    android:id="@+id/seeMoreLayout2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="10dp">
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="더보기"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:src="@drawable/more" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
                         </LinearLayout>
 
 
-
-
                     </FrameLayout>
+
+
                 </LinearLayout>
+
+
             </TabHost>
-
-
 
 
             <!--<TextView-->
@@ -147,8 +210,38 @@
             android:textSize="16sp" />
 
 
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
 
 
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
+
+
+            <Button
+                android:id="@+id/seeMoreBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="더보기" />
 
 
             <Button
