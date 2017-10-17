@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -24,9 +25,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.co.tjeit.lgtwins.adapter.NoticeAndEventAdapter;
 import kr.co.tjeit.lgtwins.adapter.PostAdapter;
 import kr.co.tjeit.lgtwins.adapter.PostAdapter2;
 import kr.co.tjeit.lgtwins.data.News;
+import kr.co.tjeit.lgtwins.data.NoticeAndEvent;
 import kr.co.tjeit.lgtwins.util.GlobalData;
 
 
@@ -35,9 +38,10 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     SliderLayout sliderLayout;
 
     PostAdapter mAdapter;
-    PostAdapter2 m2Adapter;
+    NoticeAndEventAdapter m2Adapter;
 
     List<News> postList = new ArrayList<>();
+    List<NoticeAndEvent> noticeAndEventList = new ArrayList<>();
 
     HashMap<String, String> HashMapForURL;
     HashMap<String, Integer> HashMapForLocalRes;
@@ -128,6 +132,23 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void setupEvent() {
+
+        postListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(mContext, PostDetailViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        postListView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(mContext, NoticeAndEventDetailViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         playerMenu.setOnClickListener(new View.OnClickListener() {
@@ -227,19 +248,22 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
 //        int height = getWindowManager().getDefaultDisplay().getHeight(); // 화면의 전체 사이즈
 //        slidinglayout.setPanelHeight(height / 5); // 전체사이즈 나누기 5
-        slidinglayout.setAnchorPoint(3.0f); // 1.0f = 100% , 0.7f = 70% 업
-        slidinglayout.setPanelHeight(300); // 접혀있는 상태 기본 세로 크기
+        slidinglayout.setAnchorPoint(1.0f); // 1.0f = 100% , 0.7f = 70% 업
+        slidinglayout.setPanelHeight(500); // 접혀있는 상태 기본 세로 크기
 
 
         mAdapter = new PostAdapter(mContext, postList);
         postListView.setAdapter(mAdapter);
 
-        m2Adapter = new PostAdapter2(mContext, postList);
+        m2Adapter = new NoticeAndEventAdapter(mContext, noticeAndEventList);
         postListView2.setAdapter(m2Adapter);
 
 
         postList.add(GlobalData.newses.get(GlobalData.newses.size() - 1));
         postList.add(GlobalData.newses.get(GlobalData.newses.size() - 2));
+
+        noticeAndEventList.add(GlobalData.noticeAndEvents.get(GlobalData.noticeAndEvents.size() - 1));
+        noticeAndEventList.add(GlobalData.noticeAndEvents.get(GlobalData.noticeAndEvents.size() - 2));
 
         sliderImage.setPresetTransformer(SliderLayout.Transformer.DepthPage);
 
@@ -251,6 +275,8 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         sliderImage.startAutoCycle();
 
         sliderImage.addOnPageChangeListener(MainActivity.this);
+
+
 
 
     }

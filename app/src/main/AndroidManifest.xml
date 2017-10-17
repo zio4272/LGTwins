@@ -21,7 +21,8 @@
         <activity android:name=".SplashActivity" />
         <activity android:name=".PostPopupActivity" />
         <activity android:name=".PostDetailViewActivity" />
-        <activity android:name=".NoticeAndEventPopupActivity"></activity>
+        <activity android:name=".NoticeAndEventPopupActivity" />
+        <activity android:name=".NoticeAndEventDetailViewActivity"></activity>
     </application>
 
 </manifest>

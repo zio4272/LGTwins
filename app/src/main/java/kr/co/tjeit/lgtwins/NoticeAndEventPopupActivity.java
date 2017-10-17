@@ -59,6 +59,7 @@ public class NoticeAndEventPopupActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
         GlobalData.initGlobalData();
 
         setTitle("공지사항·이벤트");

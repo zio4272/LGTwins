@@ -8,7 +8,42 @@
     tools:context="kr.co.tjeit.lgtwins.PostDetailViewActivity">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017시즌 홈경기 최종전 팬 감사 이벤트 실시"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:letterSpacing="0.8"
+            android:text="LG트윈스, 2017시즌 홈경기 최종전 팬 감사 이벤트 실시"
+            android:textColor="#000000"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="서울 LG트윈스는 오는 10월 1일(일) 삼성라이온즈와의 2017시즌 홈경기 최종전에 다양한 행사를 진행한다.\n
+이날 경기 전에는 LG트윈스로 입단하여 LG에서 선수생활을 마치고 현재 코치로 재직 중인 경헌호 코치와 김광삼 코치의 선수 은퇴식을 실시한다.\n
+행사는 은퇴 기념영상 상영, 공로패와 기념액자 및 유니폼액자 전달식에 이어 경헌호 코치의 시구와 김광삼 코치의 시타 순으로 진행될 예정이다.\n
+1루 내야광장에는 2017시즌을 보내며 기억에 남는 순간과 선수들에게 보내는 응원문구 및 2018년 바램을 작성할 수 있도록 희망메시지 보드를 준비한다.\n
+또한 특별경품 응모 부스 운영을 통해 클리닝타임에 추첨으로 LG전자 OLED 65인치 TV (제세공과금 당첨자 부담) 1대를 경품으로 증정한다.\n
+또한 이번 2017시즌 팬 감사 이벤트로 1루 내야광장 입장객 대상으로 선착순 500명에게 젠톨로지 여행용 화장품 세트를 증정하고,\n
+홈 최종전 예매자 (트윈스 홈페이지 및 App 예매자) 대상 선착순 1,200명과 시즌권자 대상 홈 최종전 App 직관 인증자 전원에게는 인터파크 2만원 상품권을 경품으로 증정할 예정이다." />
+    </LinearLayout>
 
 
 </LinearLayout>

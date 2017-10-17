@@ -4,4 +4,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제목이 들어갑니다."
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20sp"/>
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용이 들어가요~ 하나둘 셋넷\n다섯여섯~ "
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/dateTxt"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017-10-20"
+            android:textColor="#DCDCDC"
+            android:textSize="12sp"/>
+
+
+    </LinearLayout>
+
+
 </LinearLayout>
