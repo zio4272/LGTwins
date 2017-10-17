@@ -29,7 +29,6 @@ public class PlayerFragment extends Fragment {
 
     private android.widget.ListView playerListView;
     PlayerAdatper mAdapter;
-    List<Player> players = new ArrayList<>();
     private PagerSlidingTabStrip tabStrip;
     private ViewPager viewPager;
 
@@ -58,10 +57,10 @@ public class PlayerFragment extends Fragment {
     private void setValues() {
 
 
-//        viewPager.setAdapter(new PlayerAdatper(getContext(), ));
-        tabStrip.setViewPager(viewPager);
 
-        mAdapter = new PlayerAdatper(getContext(), players);
+//        tabStrip.setViewPager(viewPager);
+
+        mAdapter = new PlayerAdatper(getContext(), GlobalData.players);
         playerListView.setAdapter(mAdapter);
 
 

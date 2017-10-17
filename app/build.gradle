@@ -28,5 +28,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.sothree.slidinguppanel:library:3.4.0'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
     testCompile 'junit:junit:4.12'
 }

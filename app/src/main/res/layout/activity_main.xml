@@ -33,12 +33,28 @@
         sothree:umanoPanelHeight="68dp"
         sothree:umanoShadowHeight="1dp">
 
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Main Content"
-            android:textSize="16sp" />
+            android:orientation="vertical">
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/sliderImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Main Content"
+                android:textSize="16sp" />
+
+
+
+        </LinearLayout>
 
 
         <LinearLayout
