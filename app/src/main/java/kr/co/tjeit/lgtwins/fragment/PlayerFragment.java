@@ -29,7 +29,6 @@ public class PlayerFragment extends Fragment {
 
     private android.widget.ListView playerListView;
     PlayerAdatper mAdapter;
-    TableLayout tableLayout;
     private android.support.design.widget.TabLayout tabs;
     List<Player> players = new ArrayList<>();
 
@@ -41,7 +40,6 @@ public class PlayerFragment extends Fragment {
         this.tabs = (TabLayout) v.findViewById(R.id.tabs);
         this.playerListView = (ListView) v.findViewById(R.id.playerListView);
 
-        players.addAll(GlobalData.players);
 
         tabs.addTab(tabs.newTab().setText("전체"));
         tabs.addTab(tabs.newTab().setText("투수"));
@@ -50,38 +48,21 @@ public class PlayerFragment extends Fragment {
         tabs.addTab(tabs.newTab().setText("외야수"));
         tabs.addTab(tabs.newTab().setText("육성선수"));
 
-        tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tabs) {
 
+                players.clear(); // 모두 비워줌
 
-
-                switch (tabs.getPosition()) {
-
-                    case 0:
-
-                        break;
-
-                    case 1:
-
-                        break;
-
-                    case 2:
-
-                        break;
-
-                    case 3:
-
-                        break;
-
-                    case 4:
-
-                        break;
-
-                    case 5:
-
-                        break;
-
+                if (tabs.getPosition() == 0) {
+                    players.addAll(GlobalData.players);
+                } else {
+                    for (Player pl : GlobalData.players) {
+                        if (tabs.getPosition() == pl.getPosition()) {
+                            players.add(pl);
+                        }
+                    }
+                    mAdapter.notifyDataSetChanged();
                 }
 
 
@@ -112,7 +93,8 @@ public class PlayerFragment extends Fragment {
 
     private void setValues() {
 
-        mAdapter = new PlayerAdatper(getContext(), GlobalData.players);
+        players.addAll(GlobalData.players); // players에 모든 선수 정보를 다 담는다.
+        mAdapter = new PlayerAdatper(getContext(), players);
         playerListView.setAdapter(mAdapter);
 
 

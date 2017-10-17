@@ -41,10 +41,6 @@ public class PlayerAdatper extends ArrayAdapter<Player> {
         return row;
     }
 
-    @Override
-    public int getCount() {
-        return 8;
-    }
 }
 
 
