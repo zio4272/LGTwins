@@ -3,9 +3,9 @@ package kr.co.tjeit.lgtwins.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.tjeit.lgtwins.R;
+import kr.co.tjeit.lgtwins.data.NoticeAndEvent;
 import kr.co.tjeit.lgtwins.data.Player;
-import kr.co.tjeit.lgtwins.data.Post;
+import kr.co.tjeit.lgtwins.data.News;
 import kr.co.tjeit.lgtwins.data.TwinsPhoto;
 
 /**
@@ -14,24 +14,25 @@ import kr.co.tjeit.lgtwins.data.TwinsPhoto;
 
 public class GlobalData {
 
-    public static List<Post> posts = new ArrayList<>();
+    public static List<News> posts = new ArrayList<>();
     public static List<Player> players = new ArrayList<>();
     public static List<TwinsPhoto> twinsPhotos = new ArrayList<>();
+    public static List<NoticeAndEvent> noticeAndEvents = new ArrayList<>();
 
     public static void initGlobalData() {
 
         posts.clear();
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
-        posts.add(new Post());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
+        posts.add(new News());
 
         players.clear();
         players.add(new Player(0, 51, "봉중근", 1, "좌투좌타", "http://rucid.dothome.co.kr/wp-content/uploads/2017/08/20_lcw_m_03-980x980.jpg"));
@@ -44,6 +45,12 @@ public class GlobalData {
         twinsPhotos.clear();
         twinsPhotos.add(new TwinsPhoto(0, "29일 잠실 두산전 3대5", "관리자", "http://rucid.dothome.co.kr/wp-content/uploads/2017/08/20_lcw_m_03-980x980.jpg"));
 
+        noticeAndEvents.clear();
+        noticeAndEvents.add(new NoticeAndEvent());
+        noticeAndEvents.add(new NoticeAndEvent());
+        noticeAndEvents.add(new NoticeAndEvent());
+        noticeAndEvents.add(new NoticeAndEvent());
+        noticeAndEvents.add(new NoticeAndEvent());
 
     }
 }

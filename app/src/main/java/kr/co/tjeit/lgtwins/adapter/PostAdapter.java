@@ -11,19 +11,19 @@ import android.widget.ArrayAdapter;
 import java.util.List;
 
 import kr.co.tjeit.lgtwins.R;
-import kr.co.tjeit.lgtwins.data.Post;
+import kr.co.tjeit.lgtwins.data.News;
 
 /**
  * Created by the on 2017-10-16.
  */
 
-public class PostAdapter extends ArrayAdapter<Post> {
+public class PostAdapter extends ArrayAdapter<News> {
 
     Context mContext;
-    List<Post> mList;
+    List<News> mList;
     LayoutInflater inf;
 
-    public PostAdapter(Context context, List<Post> list) {
+    public PostAdapter(Context context, List<News> list) {
         super(context, R.layout.post_list_item, list);
         mContext = context;
         mList = list;

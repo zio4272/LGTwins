@@ -7,7 +7,7 @@ import java.util.Calendar;
  * Created by the on 2017-10-16.
  */
 
-public class Post implements Serializable {
+public class News implements Serializable {
 
     private int id;
     private int category;
@@ -16,10 +16,10 @@ public class Post implements Serializable {
     private Calendar createAt; //작성날짜
 
 
-    public Post() {
+    public News() {
     }
 
-    public Post(int id, int category, String title, String content, Calendar createAt) {
+    public News(int id, int category, String title, String content, Calendar createAt) {
         this.id = id;
         this.category = category;
         this.title = title;

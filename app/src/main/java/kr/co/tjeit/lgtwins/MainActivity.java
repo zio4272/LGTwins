@@ -1,10 +1,8 @@
 package kr.co.tjeit.lgtwins;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -28,11 +26,8 @@ import java.util.List;
 
 import kr.co.tjeit.lgtwins.adapter.PostAdapter;
 import kr.co.tjeit.lgtwins.adapter.PostAdapter2;
-import kr.co.tjeit.lgtwins.data.Post;
+import kr.co.tjeit.lgtwins.data.News;
 import kr.co.tjeit.lgtwins.util.GlobalData;
-
-import static android.R.attr.tabWidgetStyle;
-import static android.R.attr.width;
 
 
 public class MainActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
@@ -42,7 +37,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     PostAdapter mAdapter;
     PostAdapter2 m2Adapter;
 
-    List<Post> postList = new ArrayList<>();
+    List<News> postList = new ArrayList<>();
 
     HashMap<String, String> HashMapForURL;
     HashMap<String, Integer> HashMapForLocalRes;
@@ -63,6 +58,8 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     private LinearLayout tab2;
     private android.widget.FrameLayout tabcontent;
     private ListView postListView2;
+    private LinearLayout seeMoreLayout;
+    private LinearLayout seeMoreLayout2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +71,16 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         tabHost.setup();
 
-        TabHost.TabSpec spec1 = tabHost.newTabSpec("tab1").setIndicator("제목1");
+        TabHost.TabSpec spec1 = tabHost.newTabSpec("tab1").setIndicator("트윈스 뉴스");
         spec1.setContent(R.id.tab1);
         tabHost.addTab(spec1);
 
-        TabHost.TabSpec spec2 = tabHost.newTabSpec("tab2").setIndicator("제목2");
+        TabHost.TabSpec spec2 = tabHost.newTabSpec("tab2").setIndicator("공지·이벤트");
         spec2.setContent(R.id.tab2);
         tabHost.addTab(spec2);
+
+        tabHost.getTabWidget().setDividerDrawable(null); // 탭과 탭 사이의 경계선? 삭제.
+
 
         // 이미지 슬라이드
         AddImagesUrlOnline(); // URL에 있는걸 가져와서 보여주는것
@@ -129,6 +129,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     @Override
     public void setupEvent() {
 
+
         playerMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,13 +159,21 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         });
 
 
-        seeMoreBtn.setOnClickListener(new View.OnClickListener() {
+        seeMoreLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, PostPopupActivity.class);
                 startActivity(intent);
             }
         });
+        seeMoreLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, NoticeAndEventPopupActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         slidinglayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
@@ -211,7 +220,6 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     }
 
 
-
     @Override
     public void setValues() {
 
@@ -253,12 +261,19 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.homeMenu = (LinearLayout) findViewById(R.id.homeMenu);
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
+        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
+        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
+        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
+        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
+        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
         this.tabHost = (TabHost) findViewById(R.id.tabHost);
         this.tabcontent = (FrameLayout) findViewById(android.R.id.tabcontent);
-        this.postListView2 = (ListView) findViewById(R.id.postListView2);
-        this.postListView = (ListView) findViewById(R.id.postListView);
         this.tab2 = (LinearLayout) findViewById(R.id.tab2);
+        this.seeMoreLayout2 = (LinearLayout) findViewById(R.id.seeMoreLayout2);
+        this.postListView2 = (ListView) findViewById(R.id.postListView2);
         this.tab1 = (LinearLayout) findViewById(R.id.tab1);
+        this.seeMoreLayout = (LinearLayout) findViewById(R.id.seeMoreLayout);
+        this.postListView = (ListView) findViewById(R.id.postListView);
         this.tabs = (TabWidget) findViewById(android.R.id.tabs);
         this.mainText = (TextView) findViewById(R.id.mainText);
         this.sliderImage = (SliderLayout) findViewById(R.id.sliderImage);

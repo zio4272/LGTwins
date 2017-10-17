@@ -62,8 +62,10 @@ public class PlayerFragment extends Fragment {
                             players.add(pl);
                         }
                     }
-                    mAdapter.notifyDataSetChanged();
+
                 }
+
+                mAdapter.notifyDataSetChanged();
 
 
             }

@@ -84,6 +84,7 @@
                     android:orientation="vertical">
 
                     <TabWidget
+                        android:tabStripEnabled="false"
                         android:id="@android:id/tabs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -319,14 +320,14 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/home" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="3dp"
                     android:text="홈"
                     android:textColor="#FFFFFF" />
 

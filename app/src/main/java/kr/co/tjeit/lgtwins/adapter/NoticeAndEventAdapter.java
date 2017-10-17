@@ -11,20 +11,20 @@ import android.widget.ArrayAdapter;
 import java.util.List;
 
 import kr.co.tjeit.lgtwins.R;
-import kr.co.tjeit.lgtwins.data.News;
+import kr.co.tjeit.lgtwins.data.NoticeAndEvent;
 
 /**
  * Created by the on 2017-10-17.
  */
 
-public class PostAdapter2 extends ArrayAdapter<News> {
+public class NoticeAndEventAdapter extends ArrayAdapter<NoticeAndEvent> {
 
     Context mContext;
-    List<News> mList;
+    List<NoticeAndEvent> mList;
     LayoutInflater inf;
 
-    public PostAdapter2(Context context, List<News> list) {
-        super(context, R.layout.post_list_item2, list);
+    public NoticeAndEventAdapter(Context context, List<NoticeAndEvent> list) {
+        super(context, R.layout.notice_event_list_item, list);
         mContext = context;
         mList = list;
         inf = LayoutInflater.from(mContext);
@@ -36,10 +36,14 @@ public class PostAdapter2 extends ArrayAdapter<News> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         if (row == null) {
-            row = inf.inflate(R.layout.post_list_item2, null);
+            row = inf.inflate(R.layout.notice_event_list_item, null);
 
         }
         return row;
     }
 
+    @Override
+    public int getCount() {
+        return 10;
+    }
 }

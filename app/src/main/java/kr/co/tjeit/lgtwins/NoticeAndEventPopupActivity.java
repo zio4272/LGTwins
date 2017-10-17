@@ -10,28 +10,27 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.tjeit.lgtwins.adapter.PostAdapter;
-import kr.co.tjeit.lgtwins.data.News;
+import kr.co.tjeit.lgtwins.adapter.NoticeAndEventAdapter;
+import kr.co.tjeit.lgtwins.data.NoticeAndEvent;
 import kr.co.tjeit.lgtwins.util.GlobalData;
 
-public class PostPopupActivity extends BaseActivity {
+public class NoticeAndEventPopupActivity extends BaseActivity {
 
-    PostAdapter mAdapter;
-    List<News> postList = new ArrayList<>();
+    NoticeAndEventAdapter mAdapter;
+    List<NoticeAndEvent> noticeAndEvents = new ArrayList<>();
 
     private android.widget.ListView postListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_popup);
+        setContentView(R.layout.activity_notice_and_event_popup);
         bindView();
         setupEvent();
         setValues();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // 액션바 좌측에 화살표 보이기
-
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -47,25 +46,24 @@ public class PostPopupActivity extends BaseActivity {
 
     @Override
     public void setupEvent() {
-
         postListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(mContext, PostDetailViewActivity.class);
+                Intent intent = new Intent(mContext, NoticeAndEventPopupActivity.class);
                 startActivity(intent);
             }
         });
+
 
     }
 
     @Override
     public void setValues() {
-
         GlobalData.initGlobalData();
 
-        setTitle("트윈스 뉴스");
+        setTitle("공지사항·이벤트");
 
-        mAdapter = new PostAdapter(mContext, postList);
+        mAdapter = new NoticeAndEventAdapter(mContext, noticeAndEvents);
         postListView.setAdapter(mAdapter);
 
 //        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -74,15 +72,11 @@ public class PostPopupActivity extends BaseActivity {
 //        getWindow().getAttributes().width = width;
 //        getWindow().getAttributes().height = height;
 
-        postList.addAll(GlobalData.posts);
-
-
+        noticeAndEvents.addAll(GlobalData.noticeAndEvents);
     }
 
     @Override
     public void bindView() {
         this.postListView = (ListView) findViewById(R.id.postListView);
-
     }
-
 }
