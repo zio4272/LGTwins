@@ -107,8 +107,8 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         HashMapForURL = new HashMap<String, String>();
 
         HashMapForURL.put(GlobalData.twinsPhotos.get(0).getTitle(), GlobalData.twinsPhotos.get(0).getImageURL());
-        HashMapForURL.put("3", "http://www.lgchallengers.com/wp-content/uploads/2012/08/20120821_01.jpg");
-        HashMapForURL.put("4", "http://img.yonhapnews.co.kr/etc/inner/EN/2013/08/19/AEN20130819001300315_01_i.jpg");
+        HashMapForURL.put(GlobalData.twinsPhotos.get(1).getTitle(), GlobalData.twinsPhotos.get(1).getImageURL());
+        HashMapForURL.put(GlobalData.twinsPhotos.get(2).getTitle(), GlobalData.twinsPhotos.get(2).getImageURL());
 
     }
 
@@ -238,8 +238,8 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         postListView2.setAdapter(m2Adapter);
 
 
-        postList.add(GlobalData.posts.get(GlobalData.posts.size() - 1));
-        postList.add(GlobalData.posts.get(GlobalData.posts.size() - 2));
+        postList.add(GlobalData.newses.get(GlobalData.newses.size() - 1));
+        postList.add(GlobalData.newses.get(GlobalData.newses.size() - 2));
 
         sliderImage.setPresetTransformer(SliderLayout.Transformer.DepthPage);
 

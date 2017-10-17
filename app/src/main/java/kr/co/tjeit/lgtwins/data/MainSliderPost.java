@@ -8,5 +8,31 @@ import java.io.Serializable;
 
 public class MainSliderPost implements Serializable {
 
-//    TODO - 데이터 생성
+//   메인슬라이더에 들어가는 사진은 따로 관리하지 않음
+    private String title;
+    private String imageURL;
+
+    public MainSliderPost() {
+    }
+
+    public MainSliderPost(String title, String imageURL) {
+        this.title = title;
+        this.imageURL = imageURL;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }

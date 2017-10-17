@@ -74,7 +74,7 @@ public class PostPopupActivity extends BaseActivity {
 //        getWindow().getAttributes().width = width;
 //        getWindow().getAttributes().height = height;
 
-        postList.addAll(GlobalData.posts);
+        postList.addAll(GlobalData.newses);
 
 
     }
