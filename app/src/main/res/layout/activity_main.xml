@@ -30,11 +30,12 @@
         android:layout_weight="1"
         android:background="#FFFFFF"
         android:gravity="bottom"
-        sothree:umanoPanelHeight="68dp"
+        android:fadeScrollbars="false"
+        sothree:umanoPanelHeight="38dp"
         sothree:umanoShadowHeight="1dp">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -45,21 +46,23 @@
                 android:layout_height="match_parent"/>
 
             <TextView
-                android:visibility="gone"
+                android:id="@+id/mainText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Main Content"
-                android:textSize="16sp" />
+                android:text="게시물의\n 제목? 내용? 이 여기옵니다."
+                android:textColor="#FF0000"
+                android:textStyle="bold"
+                android:textSize="26sp" />
 
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 

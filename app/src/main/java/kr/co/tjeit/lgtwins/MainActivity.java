@@ -1,13 +1,17 @@
 package kr.co.tjeit.lgtwins;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -18,7 +22,6 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.sothree.slidinguppanel.ScrollableViewHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +47,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     private LinearLayout homeLayout;
     private LinearLayout homeMenu;
     private SliderLayout sliderImage;
+    private android.widget.TextView mainText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +59,13 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         // 이미지 슬라이드
         AddImagesUrlOnline(); // URL에 있는걸 가져와서 보여주는것
-//        AddImageUrlFormLocalRes(); // 자체적으로 저장된 파일
+//      AddImageUrlFormLocalRes(); // 자체적으로 저장된 파일
 
 
         for (String name : HashMapForURL.keySet()) {
+
             TextSliderView textSliderView = new TextSliderView(mContext);
+
             textSliderView.description(name).image(HashMapForURL.get(name)).setScaleType(BaseSliderView.ScaleType.CenterCrop).setOnSliderClickListener(this);
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle().putString("extra", name);
@@ -67,17 +73,14 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         }
 
-
     }
-
-
 
     // URL에서 이미지 불러오기 (인터넷 권한 설정 해야함)
     private void AddImagesUrlOnline() {
 
         HashMapForURL = new HashMap<String, String>();
 
-        HashMapForURL.put("1", "https://pbs.twimg.com/profile_images/619368257154211841/Ztpyxdkq.png");
+        HashMapForURL.put(GlobalData.twinsPhotos.get(0).getTitle() , GlobalData.twinsPhotos.get(0).getImageURL() );
         HashMapForURL.put("2", "http://rucid.dothome.co.kr/wp-content/uploads/2017/08/20_lcw_m_03-980x980.jpg");
         HashMapForURL.put("3", "http://www.lgchallengers.com/wp-content/uploads/2012/08/20120821_01.jpg");
         HashMapForURL.put("4", "https://www.lgtwins.com/images/queen/twins_cheer_main.jpg");
@@ -151,12 +154,16 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
                 // 축소될 경우
                 if (newState.name().toString().equals("Collapsed")) {
                     slidinglayout.setScrollableViewHelper(null);
+//
+
+
 
 
                     // 펴질 경우
                 } else if (newState.name().equals("Expanded")) {
                     slidinglayout.setScrollableViewHelper(new NestedScrollableViewHelper());
                     slidinglayout.setVerticalScrollBarEnabled(true);
+
 
 
                 }
@@ -175,7 +182,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
 //        int height = getWindowManager().getDefaultDisplay().getHeight(); // 화면의 전체 사이즈
 //        slidinglayout.setPanelHeight(height / 5); // 전체사이즈 나누기 5
-        slidinglayout.setAnchorPoint(0.7f); // 1.0f = 100% , 0.7f = 70% 업
+        slidinglayout.setAnchorPoint(1.0f); // 1.0f = 100% , 0.7f = 70% 업
         slidinglayout.setPanelHeight(300); // 접혀있는 상태 기본 세로 크기
 
 
@@ -206,6 +213,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
         this.postListView = (ListView) findViewById(R.id.postListView);
+        this.mainText = (TextView) findViewById(R.id.mainText);
         this.sliderImage = (SliderLayout) findViewById(R.id.sliderImage);
         this.playerLayout = (LinearLayout) findViewById(R.id.playerLayout);
     }
