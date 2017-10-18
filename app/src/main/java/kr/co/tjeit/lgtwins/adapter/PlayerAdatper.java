@@ -37,35 +37,37 @@ public class PlayerAdatper extends ArrayAdapter<Player> {
         if (row == null) {
             row = inf.inflate(R.layout.player_list_item, null);
 
-            Player data = mList.get(position);
-
-            TextView backNumber = (TextView) row.findViewById(R.id.backNumber);
-            TextView playerName = (TextView) row.findViewById(R.id.playerName);
-            TextView playerPosition = (TextView) row.findViewById(R.id.playerPosition);
-            TextView useHand = (TextView) row.findViewById(R.id.useHand);
-
-
-            backNumber.setText(data.getBackNumber() + "");
-            playerName.setText(data.getName());
-
-
-            if (data.getPosition() == 1) {
-                playerPosition.setText("투수");
-            } else if (data.getPosition() == 2) {
-                playerPosition.setText("포수");
-            } else if (data.getPosition() == 3) {
-                playerPosition.setText("내야수");
-            } else if (data.getPosition() == 4) {
-                playerPosition.setText("외야수");
-            } else if (data.getPosition() == 5) {
-                playerPosition.setText("육성선수");
-            }
-
-            useHand.setText(data.getUseHand());
-
-
         }
+
+        Player data = mList.get(position);
+
+        TextView backNumber = (TextView) row.findViewById(R.id.backNumber);
+        TextView playerName = (TextView) row.findViewById(R.id.playerName);
+        TextView playerPosition = (TextView) row.findViewById(R.id.playerPosition);
+        TextView useHand = (TextView) row.findViewById(R.id.useHand);
+
+
+        backNumber.setText(data.getBackNumber() + "");
+        playerName.setText(data.getName());
+
+
+        if (data.getPosition() == 1) {
+            playerPosition.setText("투수");
+        } else if (data.getPosition() == 2) {
+            playerPosition.setText("포수");
+        } else if (data.getPosition() == 3) {
+            playerPosition.setText("내야수");
+        } else if (data.getPosition() == 4) {
+            playerPosition.setText("외야수");
+        } else if (data.getPosition() == 5) {
+            playerPosition.setText("육성선수");
+        }
+
+        useHand.setText(data.getUseHand());
+
         return row;
+
+
     }
 
 }

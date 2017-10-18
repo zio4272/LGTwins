@@ -4,16 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.tjeit.lgtwins.MainActivity;
 import kr.co.tjeit.lgtwins.R;
 import kr.co.tjeit.lgtwins.adapter.PlayerAdatper;
 import kr.co.tjeit.lgtwins.data.Player;
@@ -25,10 +24,11 @@ import kr.co.tjeit.lgtwins.util.GlobalData;
 
 public class PlayerFragment extends Fragment {
 
-    private android.widget.ListView playerListView;
+
     PlayerAdatper mAdapter;
     private android.support.design.widget.TabLayout tabs;
     List<Player> players = new ArrayList<>();
+    private GridView playerListView;
 
 
     @Nullable
@@ -36,7 +36,7 @@ public class PlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_player, container, false);
         this.tabs = (TabLayout) v.findViewById(R.id.tabs);
-        this.playerListView = (ListView) v.findViewById(R.id.playerListView);
+        this.playerListView = (GridView) v.findViewById(R.id.playerListView);
 
 
         tabs.addTab(tabs.newTab().setText("전체"));

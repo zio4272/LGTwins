@@ -14,12 +14,15 @@
         app:tabGravity="fill" />
 
 
-    <ListView
+    <GridView
+        android:padding="5dp"
         android:id="@+id/playerListView"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+    </GridView>
 
 
 
