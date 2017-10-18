@@ -1,18 +1,17 @@
 package kr.co.tjeit.lgtwins.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import kr.co.tjeit.lgtwins.LoginActivity;
 import kr.co.tjeit.lgtwins.R;
-import kr.co.tjeit.lgtwins.adapter.PlayerAdatper;
-import kr.co.tjeit.lgtwins.data.Player;
-import kr.co.tjeit.lgtwins.util.GlobalData;
 
 /**
  * Created by ziO on 2017-10-18.
@@ -20,10 +19,15 @@ import kr.co.tjeit.lgtwins.util.GlobalData;
 
 public class SeemoreFragment extends Fragment {
 
+    private android.widget.TextView loginBtn;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_see_more, container, false);
+
+        this.loginBtn = (TextView) v.findViewById(R.id.loginBtn);
 
         return v;
     }
@@ -41,5 +45,13 @@ public class SeemoreFragment extends Fragment {
     }
 
     private void setupEvent() {
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

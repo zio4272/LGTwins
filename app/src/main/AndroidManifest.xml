@@ -23,7 +23,8 @@
         <activity android:name=".PostPopupActivity" />
         <activity android:name=".PostDetailViewActivity" />
         <activity android:name=".NoticeAndEventPopupActivity" />
-        <activity android:name=".NoticeAndEventDetailViewActivity"></activity>
+        <activity android:name=".NoticeAndEventDetailViewActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>
