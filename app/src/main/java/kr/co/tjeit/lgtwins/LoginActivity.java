@@ -19,6 +19,8 @@ public class LoginActivity extends BaseActivity {
         bindView();
         setupEvent();
         setValues();
+
+        getSupportActionBar().hide();
     }
 
     @Override

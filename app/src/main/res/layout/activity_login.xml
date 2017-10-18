@@ -13,7 +13,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:src="@drawable/emblem" />
+        android:src="@drawable/lg_twins_2017" />
 
     <LinearLayout
         android:padding="20dp"

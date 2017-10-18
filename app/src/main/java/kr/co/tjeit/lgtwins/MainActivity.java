@@ -463,5 +463,9 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 //
 //    }
 
+    public void backPressed (){
+
+    }
+
 
 }
