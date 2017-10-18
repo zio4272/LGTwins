@@ -9,13 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
+import kr.co.tjeit.lgtwins.MainActivity;
 import kr.co.tjeit.lgtwins.R;
 import kr.co.tjeit.lgtwins.adapter.PlayerAdatper;
 import kr.co.tjeit.lgtwins.data.Player;
@@ -91,6 +89,7 @@ public class PlayerFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         setupEvent();
         setValues();
+
     }
 
     private void setValues() {

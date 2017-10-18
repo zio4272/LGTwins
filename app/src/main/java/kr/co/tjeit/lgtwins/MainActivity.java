@@ -27,7 +27,6 @@ import java.util.List;
 
 import kr.co.tjeit.lgtwins.adapter.NoticeAndEventAdapter;
 import kr.co.tjeit.lgtwins.adapter.PostAdapter;
-import kr.co.tjeit.lgtwins.adapter.PostAdapter2;
 import kr.co.tjeit.lgtwins.data.News;
 import kr.co.tjeit.lgtwins.data.NoticeAndEvent;
 import kr.co.tjeit.lgtwins.util.GlobalData;
@@ -64,6 +63,8 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     private ListView postListView2;
     private LinearLayout seeMoreLayout;
     private LinearLayout seeMoreLayout2;
+    private LinearLayout seeMoreMenu;
+    private LinearLayout seeMoreMenuLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,10 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         bindView();
         setupEvent();
         setValues();
+
+        //모든 액션바 삭제
+        getSupportActionBar().hide();
+
 
         tabHost.setup();
 
@@ -158,6 +163,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
                     case R.id.playerMenu:
                         playerLayout.setVisibility(View.VISIBLE);
                         slidinglayout.setVisibility(View.GONE);
+                        seeMoreMenuLayout.setVisibility(View.GONE);
                         break;
 
 
@@ -172,6 +178,22 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
                     case R.id.homeMenu:
                         playerLayout.setVisibility(View.GONE);
                         slidinglayout.setVisibility(View.VISIBLE);
+                        seeMoreMenuLayout.setVisibility(View.GONE);
+                        break;
+
+
+                }
+            }
+        });
+
+        seeMoreMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.seeMoreMenu:
+                        playerLayout.setVisibility(View.GONE);
+                        slidinglayout.setVisibility(View.GONE);
+                        seeMoreMenuLayout.setVisibility(View.VISIBLE);
                         break;
 
 
@@ -283,15 +305,10 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void bindView() {
+        this.seeMoreMenu = (LinearLayout) findViewById(R.id.seeMoreMenu);
         this.playerMenu = (LinearLayout) findViewById(R.id.playerMenu);
         this.homeMenu = (LinearLayout) findViewById(R.id.homeMenu);
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
-        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
-        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
-        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
-        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
-        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
-        this.seeMoreBtn = (Button) findViewById(R.id.seeMoreBtn);
         this.tabHost = (TabHost) findViewById(R.id.tabHost);
         this.tabcontent = (FrameLayout) findViewById(android.R.id.tabcontent);
         this.tab2 = (LinearLayout) findViewById(R.id.tab2);
@@ -303,6 +320,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.tabs = (TabWidget) findViewById(android.R.id.tabs);
         this.mainText = (TextView) findViewById(R.id.mainText);
         this.sliderImage = (SliderLayout) findViewById(R.id.sliderImage);
+        this.seeMoreMenuLayout = (LinearLayout) findViewById(R.id.seeMoreMenuLayout);
         this.playerLayout = (LinearLayout) findViewById(R.id.playerLayout);
     }
 
