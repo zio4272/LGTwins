@@ -245,18 +245,12 @@
 
 
                 <TextView
+                    android:id="@+id/currentTempTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="18"
                     android:textColor="#000000"
                     android:textSize="50sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="˚"
-                    android:textSize="40dp" />
 
                 <LinearLayout
                     android:gravity="center_vertical"
@@ -268,6 +262,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/skyTxt"
                         android:textColor="#555555"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -285,6 +280,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/skyImage"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@mipmap/ic_launcher_round"/>

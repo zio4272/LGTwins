@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
@@ -21,15 +21,20 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import kr.co.tjeit.lgtwins.adapter.NoticeAndEventAdapter;
 import kr.co.tjeit.lgtwins.adapter.PostAdapter;
 import kr.co.tjeit.lgtwins.data.News;
 import kr.co.tjeit.lgtwins.data.NoticeAndEvent;
 import kr.co.tjeit.lgtwins.util.GlobalData;
+import kr.co.tjeit.lgtwins.util.ServerUtil;
 
 
 public class MainActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
@@ -65,6 +70,9 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     private LinearLayout seeMoreLayout2;
     private LinearLayout seeMoreMenu;
     private LinearLayout seeMoreMenuLayout;
+    private TextView currentTempTxt;
+    private TextView skyTxt;
+    private android.widget.ImageView skyImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +81,98 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         bindView();
         setupEvent();
         setValues();
+
+
+//        어플 시작시 무조건 실행
+//        잠실야구장의 위도 경도만 불러옴
+        ServerUtil.getCurrentWeatherFromServer(mContext, 37.512096, 127.071847, new ServerUtil.JsonResponseHandler() {
+            @Override
+            public void onResponse(JSONObject json) {
+
+                Log.d("실시간날씨JSON", json.toString());
+
+                try {
+                    skyTxt.setText(json.getJSONObject("weather").getJSONArray("minutely").getJSONObject(0).getJSONObject("sky").getString("name"));
+                    currentTempTxt.setText(String.format(Locale.KOREA, "%.1f ˚", Double.parseDouble(json.getJSONObject("weather").getJSONArray("minutely").getJSONObject(0).getJSONObject("temperature").getString("tc"))));
+
+                    String weatherState = json.getJSONObject("weather").getJSONArray("minutely").getJSONObject(0).getJSONObject("sky").getString("name");
+                    switch (weatherState) {
+                        case "상태없음":
+                            skyImage.setImageResource(R.drawable.sky_a00);
+                            break;
+                        case "맑음":
+                            skyImage.setImageResource(R.drawable.sky_a01);
+                            break;
+                        case "구름조금":
+                            skyImage.setImageResource(R.drawable.sky_a02);
+                            break;
+                        case "구름많음":
+                            skyImage.setImageResource(R.drawable.sky_a03);
+                            break;
+                        case "구름많고 비":
+                            skyImage.setImageResource(R.drawable.sky_a04);
+                            break;
+                        case "구름많고 눈":
+                            skyImage.setImageResource(R.drawable.sky_a05);
+                            break;
+                        case "구름많고 비 또는 눈":
+                            skyImage.setImageResource(R.drawable.sky_a06);
+                            break;
+                        case "흐림":
+                            skyImage.setImageResource(R.drawable.sky_a07);
+                            break;
+                        case "흐리고 비":
+                            skyImage.setImageResource(R.drawable.sky_a08);
+                            break;
+                        case "흐리고 눈":
+                            skyImage.setImageResource(R.drawable.sky_a09);
+                            break;
+                        case "흐리고 비 또는 눈":
+                            skyImage.setImageResource(R.drawable.sky_a10);
+                            break;
+                        case "흐리고낙뢰":
+                            skyImage.setImageResource(R.drawable.sky_a11);
+                            break;
+                        case "뇌우, 비":
+                            skyImage.setImageResource(R.drawable.sky_a12);
+                            break;
+                        case "뇌우, 눈":
+                            skyImage.setImageResource(R.drawable.sky_a13);
+                            break;
+                        case "뇌우, 비 또는 눈":
+                            skyImage.setImageResource(R.drawable.sky_a14);
+                            break;
+
+                    }
+
+//                            하늘상태코드명
+//                            -SKY_A00:상태없음
+//                            -sky_a01:맑음
+//                            -SKY_A02:구름조금
+//                            -SKY_A03:구름많음
+//                            -SKY_A04:구름많고 비
+//                            -SKY_A05:구름많고 눈
+//                            -SKY_A06:구름많고 비 또는 눈
+//                            -SKY_A07:흐림
+//                            -SKY_A08:흐리고 비
+//                            -SKY_A09:흐리고 눈
+//                            -SKY_A10:흐리고 비 또는 눈
+//                            -SKY_A11:흐리고 낙뢰
+//                            -SKY_A12:뇌우, 비
+//                            -SKY_A13:뇌우, 눈
+//                            -SKY_A14:뇌우, 비 또는 눈
+
+//                    if (json.getJSONObject("weather").getJSONArray("minutely").getJSONObject(0).getJSONObject("sky").getString("name").equals("흐림")) {
+//                        skyImage.setImageResource(R.drawable.above_shadow);
+//                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
 
         //모든 액션바 삭제
         getSupportActionBar().hide();
@@ -153,7 +253,6 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
                 startActivity(intent);
             }
         });
-
 
 
         playerMenu.setOnClickListener(new View.OnClickListener() {
@@ -299,8 +398,6 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         sliderImage.addOnPageChangeListener(MainActivity.this);
 
 
-
-
     }
 
     @Override
@@ -309,6 +406,9 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.playerMenu = (LinearLayout) findViewById(R.id.playerMenu);
         this.homeMenu = (LinearLayout) findViewById(R.id.homeMenu);
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        this.skyImage = (ImageView) findViewById(R.id.skyImage);
+        this.skyTxt = (TextView) findViewById(R.id.skyTxt);
+        this.currentTempTxt = (TextView) findViewById(R.id.currentTempTxt);
         this.tabHost = (TabHost) findViewById(R.id.tabHost);
         this.tabcontent = (FrameLayout) findViewById(android.R.id.tabcontent);
         this.tab2 = (LinearLayout) findViewById(R.id.tab2);
