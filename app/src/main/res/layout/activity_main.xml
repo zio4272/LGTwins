@@ -327,7 +327,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@drawable/ball" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -339,6 +339,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/teamRankLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -348,7 +349,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@drawable/trophy" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -368,8 +369,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/home" />
 
                 <TextView
@@ -392,7 +393,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@drawable/team" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -414,7 +415,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@drawable/seemore" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     private TextView currentTempTxt;
     private TextView skyTxt;
     private android.widget.ImageView skyImage;
+    private LinearLayout teamRankLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,6 +238,14 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void setupEvent() {
+
+        teamRankLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, TeamRankActivity.class);
+                startActivity(intent);
+            }
+        });
 
         postListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -405,6 +414,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.seeMoreMenu = (LinearLayout) findViewById(R.id.seeMoreMenu);
         this.playerMenu = (LinearLayout) findViewById(R.id.playerMenu);
         this.homeMenu = (LinearLayout) findViewById(R.id.homeMenu);
+        this.teamRankLayout = (LinearLayout) findViewById(R.id.teamRankLayout);
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         this.skyImage = (ImageView) findViewById(R.id.skyImage);
         this.skyTxt = (TextView) findViewById(R.id.skyTxt);
@@ -463,7 +473,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 //
 //    }
 
-    public void backPressed (){
+    public void backPressed() {
 
     }
 

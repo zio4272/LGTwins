@@ -24,7 +24,8 @@
         <activity android:name=".PostDetailViewActivity" />
         <activity android:name=".NoticeAndEventPopupActivity" />
         <activity android:name=".NoticeAndEventDetailViewActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".TeamRankActivity"></activity>
     </application>
 
 </manifest>
