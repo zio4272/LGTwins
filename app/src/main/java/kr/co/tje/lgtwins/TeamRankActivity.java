@@ -2,11 +2,11 @@ package kr.co.tje.lgtwins;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,13 +14,19 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import kr.co.tje.lgtwins.data.Team;
 
 
 public class TeamRankActivity extends BaseActivity {
     private android.widget.TextView text;
     private android.widget.ImageView img;
+
+    List<Team> teams = new ArrayList<>();
 
 
     @Override
@@ -39,12 +45,12 @@ public class TeamRankActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        naverBaseballTeamRank task = new naverBaseballTeamRank();
+        NaverBaseballTeamRank task = new NaverBaseballTeamRank();
         task.execute();
     }
 
 
-    private class naverBaseballTeamRank extends AsyncTask<Void, Void, Map<String, String>> {
+    private class NaverBaseballTeamRank extends AsyncTask<Void, Void, Map<String, String>> {
 
         @Override
         protected Map<String, String> doInBackground(Void... params) {
@@ -60,30 +66,28 @@ public class TeamRankActivity extends BaseActivity {
                 Elements rows = teamTable.select("tr");
 
 
-                Elements teamRank = rows.select("th");
-                result.put("팀순위", teamRank.text());
-
-                Elements teamLogo = teamRank.select("img");
-                String str = teamLogo.attr("src");
-                result.put("팀로고", str);
-
-
-
-                for (int i = 1; i < rows.size(); i++) {
+                for (int i = 0; i < rows.size(); i++) {
 //                    한줄 통채로
                     Element row = rows.get(i);
 
+                    Team team = new Team();
 
-                    result.put("tr값", row.text());
+                    String rankStr = row.select("th").first().text();
+                    team.setRank(Integer.parseInt(rankStr));
+
+                    String teamName = row.select("span").first().text();
+                    team.setName(teamName);
+
+//                    팀 로고 받아오는 부분
+                    Elements teamLogo = row.select("img");
+//                    replace 를 이용하여 주소창에 25_25 부분을 200_200으로변경 / 네이버에서 해당 크기로 변경가능하게 되어있음 앙 감사띠
+                    String url = teamLogo.attr("src").replace("25", "200");
+                    team.setUrl(url);
 
 
-                    Elements cols = row.select("td");
-                    result.put("td값", cols.text());
-
+                    teams.add(team);
 
                 }
-
-
 
 
             } catch (IOException e) {
@@ -94,9 +98,17 @@ public class TeamRankActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Map<String, String> map) {
-            text.setText(map.get("팀로고"));
+//            text.setText(map.get("span"));
 //            Glide.with(mContext).load(map.get("팀로고")).into(img);
 //            Picasso.with(mContext).load(map.get("팀로고")).resize(50,50).into(img);
+
+            for (Team team : teams) {
+                Log.d("팀로고", team.getUrl());
+                Log.d("팀순위", team.getRank() + "");
+                Log.d("팀이름", team.getName());
+
+            }
+            Glide.with(mContext).load(teams.get(0).getUrl()).into(img);
 
 
         }
