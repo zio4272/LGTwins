@@ -3,10 +3,7 @@ package kr.co.tje.lgtwins;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
+import android.widget.ListView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,14 +16,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.tje.lgtwins.adapter.NaverTeamRankAdapter;
 import kr.co.tje.lgtwins.data.Team;
 
 
 public class TeamRankActivity extends BaseActivity {
-    private android.widget.TextView text;
-    private android.widget.ImageView img;
+
 
     List<Team> teams = new ArrayList<>();
+    NaverTeamRankAdapter mAdater;
+    private ListView teamRankListView;
 
 
     @Override
@@ -160,8 +159,9 @@ public class TeamRankActivity extends BaseActivity {
                 Log.d("장타율", team.getBigHit());
                 Log.d("최근10경기", team.getLatestTenGame());
 
+
             }
-            Glide.with(mContext).load(teams.get(0).getUrl()).into(img);
+//            Glide.with(mContext).load(teams.get(0).getUrl()).into(img);
 
 
         }
@@ -178,12 +178,19 @@ public class TeamRankActivity extends BaseActivity {
     @Override
     public void setValues() {
 
+
+
+        mAdater = new NaverTeamRankAdapter(mContext, teams);
+        teamRankListView.setAdapter(mAdater);
+
+
+
     }
 
     @Override
     public void bindView() {
-        this.text = (TextView) findViewById(R.id.text);
-        this.img = (ImageView) findViewById(R.id.img);
+        this.teamRankListView = (ListView) findViewById(R.id.teamRankListView);
+
     }
 
 
