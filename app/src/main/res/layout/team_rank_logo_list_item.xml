@@ -5,6 +5,8 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/teamlogolayout"
+
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +35,11 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0"/>
 
 
 </LinearLayout>

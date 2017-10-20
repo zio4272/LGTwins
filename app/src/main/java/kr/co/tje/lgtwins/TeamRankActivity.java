@@ -2,6 +2,7 @@ package kr.co.tje.lgtwins;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,8 +41,6 @@ public class TeamRankActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_rank);
-
-
         bindView();
         setupEvent();
         setValues();
@@ -204,7 +203,6 @@ public class TeamRankActivity extends BaseActivity {
             TextView teamNameTxt = r.findViewById(R.id.teamNameTxt);
 
 
-
             totalGameTxt.setText(team.getTotGameCount());
             winGameTxt.setText(team.getWinGame());
             loseGameTxt.setText(team.getLoseGame());
@@ -220,7 +218,9 @@ public class TeamRankActivity extends BaseActivity {
             Glide.with(mContext).load(team.getUrl()).into(teamLogoImg);
             teamNameTxt.setText(team.getName());
 
-
+            if (team.getName().equals("LG")) {
+                teamNameTxt.setTextColor(0xFFFF0000);
+            }
 
 
             teamRankRecordLayout.addView(v);
