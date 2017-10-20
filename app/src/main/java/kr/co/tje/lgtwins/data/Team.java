@@ -17,7 +17,7 @@ public class Team implements Serializable {
     private String drawGame; // 무
     private String winRating; // 승률
     private String equalsGame; // 게임차
-    private String againGame; // 연속 (연승 연패 등)
+    private String continueGame; // 연속 (연승 연패 등)
     private String goBase; // 출루율
     private String bigHit; // 장타율
     private String latestTenGame; // 최근10경기
@@ -36,7 +36,7 @@ public class Team implements Serializable {
         this.drawGame = drawGame;
         this.winRating = winRating;
         this.equalsGame = equalsGame;
-        this.againGame = againGame;
+        this.continueGame = againGame;
         this.goBase = goBase;
         this.bigHit = bigHit;
         this.latestTenGame = latestTenGame;
@@ -114,12 +114,12 @@ public class Team implements Serializable {
         this.equalsGame = equalsGame;
     }
 
-    public String getAgainGame() {
-        return againGame;
+    public String getContinueGame() {
+        return continueGame;
     }
 
-    public void setAgainGame(String againGame) {
-        this.againGame = againGame;
+    public void setContinueGame(String continueGame) {
+        this.continueGame = continueGame;
     }
 
     public String getGoBase() {
