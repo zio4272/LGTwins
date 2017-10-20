@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class Team implements Serializable {
 
-    private int rank;
+    private String rank;
     private String name;
     private String url;
     private String totGameCount; // 총경기수
@@ -26,7 +26,7 @@ public class Team implements Serializable {
     public Team() {
     }
 
-    public Team(int rank, String name, String url, String totGameCount, String winGame, String loseGame, String drawGame, String winRating, String equalsGame, String againGame, String goBase, String bigHit, String latestTenGame) {
+    public Team(String rank, String name, String url, String totGameCount, String winGame, String loseGame, String drawGame, String winRating, String equalsGame, String againGame, String goBase, String bigHit, String latestTenGame) {
         this.rank = rank;
         this.name = name;
         this.url = url;
@@ -42,11 +42,11 @@ public class Team implements Serializable {
         this.latestTenGame = latestTenGame;
     }
 
-    public int getRank() {
+    public String getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(String rank) {
         this.rank = rank;
     }
 

@@ -3,7 +3,13 @@ package kr.co.tje.lgtwins;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kr.co.tje.lgtwins.adapter.NaverTeamRankAdapter;
 import kr.co.tje.lgtwins.data.Team;
 
 
@@ -24,8 +29,7 @@ public class TeamRankActivity extends BaseActivity {
 
 
     List<Team> teams = new ArrayList<>();
-    NaverTeamRankAdapter mAdater;
-    private ListView teamRankListView;
+    private android.widget.LinearLayout teamRankRecordLayout;
 
 
     @Override
@@ -73,7 +77,7 @@ public class TeamRankActivity extends BaseActivity {
 
                     // 순위
                     String rankStr = row.select("th").first().text();
-                    team.setRank(Integer.parseInt(rankStr));
+                    team.setRank(rankStr);
 
                     // 팀이름
                     String teamName = row.select("span").first().text();
@@ -146,7 +150,7 @@ public class TeamRankActivity extends BaseActivity {
 
             for (Team team : teams) {
                 Log.d("팀로고", team.getUrl());
-                Log.d("팀순위", team.getRank() + "");
+                Log.d("팀순위", team.getRank());
                 Log.d("팀이름", team.getName());
                 Log.d("총경기수", team.getTotGameCount());
                 Log.d("승리한경기", team.getWinGame());
@@ -163,8 +167,64 @@ public class TeamRankActivity extends BaseActivity {
             }
 //            Glide.with(mContext).load(teams.get(0).getUrl()).into(img);
 
+            TeamRecord();
 
         }
+    }
+
+    public void TeamRecord() {
+
+        LayoutInflater inf = LayoutInflater.from(mContext);
+
+        for (Team team : teams) {
+
+            View v = inf.inflate(R.layout.team_rank_list_item, null);
+
+
+
+            TextView totalGameTxt = v.findViewById(R.id.totalGameTxt);
+            TextView winGameTxt = v.findViewById(R.id.winGameTxt);
+            TextView loseGameTxt = v.findViewById(R.id.loseGameTxt);
+            TextView drawGameTxt = v.findViewById(R.id.drawGameTxt);
+            TextView winRatingTxt = v.findViewById(R.id.winRatingTxt);
+            TextView equalsGameTxt = v.findViewById(R.id.equalsGameTxt);
+            TextView continueGameTxt = v.findViewById(R.id.continueGameTxt);
+            TextView goBaseTxt = v.findViewById(R.id.goBaseTxt);
+            TextView bigHitTxt = v.findViewById(R.id.bigHitTxt);
+            TextView latestTenGameTxt = v.findViewById(R.id.latestTenGameTxt);
+
+            TextView teamRankTxt = v.findViewById(R.id.teamRankTxt);
+            ImageView teamLogoImg = v.findViewById(R.id.teamLogoImg);
+            TextView teamNameTxt = v.findViewById(R.id.teamNameTxt);
+
+
+            totalGameTxt.setText(team.getTotGameCount());
+            winGameTxt.setText(team.getWinGame());
+            loseGameTxt.setText(team.getLoseGame());
+            drawGameTxt.setText(team.getDrawGame());
+            winRatingTxt.setText(team.getWinRating());
+            equalsGameTxt.setText(team.getEqualsGame());
+            continueGameTxt.setText(team.getContinueGame());
+            goBaseTxt.setText(team.getGoBase());
+            bigHitTxt.setText(team.getBigHit());
+            latestTenGameTxt.setText(team.getLatestTenGame());
+
+            teamRankTxt.setText(team.getRank());
+            Glide.with(mContext).load(team.getUrl()).into(teamLogoImg);
+            teamNameTxt.setText(team.getName());
+
+
+
+            teamRankRecordLayout.addView(v);
+
+
+
+
+
+
+
+        }
+
     }
 
 
@@ -178,18 +238,12 @@ public class TeamRankActivity extends BaseActivity {
     @Override
     public void setValues() {
 
-
-
-        mAdater = new NaverTeamRankAdapter(mContext, teams);
-        teamRankListView.setAdapter(mAdater);
-
-
-
     }
 
     @Override
     public void bindView() {
-        this.teamRankListView = (ListView) findViewById(R.id.teamRankListView);
+
+        this.teamRankRecordLayout = (LinearLayout) findViewById(R.id.teamRankRecordLayout);
 
     }
 

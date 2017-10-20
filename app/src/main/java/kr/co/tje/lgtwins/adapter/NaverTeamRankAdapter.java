@@ -37,10 +37,6 @@ public class NaverTeamRankAdapter extends ArrayAdapter<Team> {
 
         }
 
-        Team data = mList.get(position);
-
-        TextView textView = (TextView) row.findViewById(R.id.textView);
-        textView.setText(data.getName());
 
 
         return row;

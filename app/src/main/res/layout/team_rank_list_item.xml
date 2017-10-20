@@ -4,12 +4,112 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="어떻게나와용"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+
+    <TextView
+        android:gravity="center"
+        android:padding="10dp"
+        android:id="@+id/totalGameTxt"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="144"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/winGameTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="87"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/loseGameTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="56"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/drawGameTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="1"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/winRatingTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="0.608"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/equalsGameTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="0.0"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/continueGameTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="2승"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/goBaseTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="0.370"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/bigHitTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="0.469"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/latestTenGameTxt"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="6승-4패-0무"
+        android:textColor="#000000"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D5D5D5"/>
 
 
 
