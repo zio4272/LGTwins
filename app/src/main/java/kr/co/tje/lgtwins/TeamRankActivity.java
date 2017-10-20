@@ -30,12 +30,17 @@ public class TeamRankActivity extends BaseActivity {
 
     List<Team> teams = new ArrayList<>();
     private android.widget.LinearLayout teamRankRecordLayout;
+    private TextView teamRankTxt;
+    private ImageView teamLogoImg;
+    private TextView teamNameTxt;
+    private LinearLayout teamInfo;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_rank);
+
 
         bindView();
         setupEvent();
@@ -179,7 +184,7 @@ public class TeamRankActivity extends BaseActivity {
         for (Team team : teams) {
 
             View v = inf.inflate(R.layout.team_rank_list_item, null);
-
+            View r = inf.inflate(R.layout.team_rank_logo_list_item, null);
 
 
             TextView totalGameTxt = v.findViewById(R.id.totalGameTxt);
@@ -193,9 +198,11 @@ public class TeamRankActivity extends BaseActivity {
             TextView bigHitTxt = v.findViewById(R.id.bigHitTxt);
             TextView latestTenGameTxt = v.findViewById(R.id.latestTenGameTxt);
 
-            TextView teamRankTxt = v.findViewById(R.id.teamRankTxt);
-            ImageView teamLogoImg = v.findViewById(R.id.teamLogoImg);
-            TextView teamNameTxt = v.findViewById(R.id.teamNameTxt);
+
+            TextView teamRankTxt = r.findViewById(R.id.teamRankTxt);
+            ImageView teamLogoImg = r.findViewById(R.id.teamLogoImg);
+            TextView teamNameTxt = r.findViewById(R.id.teamNameTxt);
+
 
 
             totalGameTxt.setText(team.getTotGameCount());
@@ -215,12 +222,9 @@ public class TeamRankActivity extends BaseActivity {
 
 
 
+
             teamRankRecordLayout.addView(v);
-
-
-
-
-
+            teamInfo.addView(r);
 
 
         }
@@ -238,12 +242,14 @@ public class TeamRankActivity extends BaseActivity {
     @Override
     public void setValues() {
 
+
     }
 
     @Override
     public void bindView() {
-
         this.teamRankRecordLayout = (LinearLayout) findViewById(R.id.teamRankRecordLayout);
+        this.teamInfo = (LinearLayout) findViewById(R.id.teamInfo);
+
 
     }
 
