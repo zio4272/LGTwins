@@ -24,7 +24,7 @@ import java.util.Map;
 
 import kr.co.tje.lgtwins.data.Team;
 
-
+// 2017-10-21
 public class TeamRankActivity extends BaseActivity {
 
 
