@@ -3,6 +3,7 @@ package kr.co.tje.lgtwins;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,16 +17,17 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.tje.lgtwins.data.CalendarResult;
-import kr.co.tje.lgtwins.data.Team;
 
 public class CalendarAndResultActivity extends BaseActivity {
 
     List<CalendarResult> results = new ArrayList<>();
+    private android.widget.TextView infoTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_and_result);
+
         bindView();
         setupEvent();
         setValues();
@@ -39,7 +41,6 @@ public class CalendarAndResultActivity extends BaseActivity {
         CalendarAndResult task = new CalendarAndResult();
         task.execute();
     }
-
 
 
     private class CalendarAndResult extends AsyncTask<Void, Void, Map<String, String>> {
@@ -63,44 +64,51 @@ public class CalendarAndResultActivity extends BaseActivity {
 
                     CalendarResult calendarResult = new CalendarResult();
 
-                    // 날짜(요일)
-                    String date = row.select("tbody > tr > td > span.td_date").text();
-                    calendarResult.setDate(date);
+                    // 경기정보가 없을경우를 먼저 처리 해줘야함
+                    if (row.select("tbody > tr > td > span.td_stadium").size() > 0) {
 
-                    // 시간
-                    String time = row.select("tbody > tr > td > span.td_hour").text();
-                    calendarResult.setTime(time);
+                        // 날짜(요일)
+                        String date = row.select("tbody > tr > td > span.td_date").text();
+                        calendarResult.setDate(date);
 
-                    // 좌측 팀 이름
-                    String leftName = row.select("tbody > tr > td > span.team_lft").text();
-                    calendarResult.setLeftTeamName(leftName);
+                        // 시간
+                        String time = row.select("tbody > tr > td > span.td_hour").text();
+                        calendarResult.setTime(time);
 
-                    // 좌측 팀 로고
-                    Elements leftTeamLogo = row.select("img");
-                    String leftURL = leftTeamLogo.attr("src");
-                    calendarResult.setLeftTeamLogoURL(leftURL);
+                        // 좌측 팀 이름
+                        String leftName = row.select("tbody > tr > td > span.team_lft").text();
+                        calendarResult.setLeftTeamName(leftName);
 
-                    // 스코어
-                    String score = row.select("tbody > tr > td > strong.td_score").text();
-                    calendarResult.setScore(score);
+                        // 좌측 팀 로고
+                        Element leftTeamLogo = row.select("img").get(0);
+                        String leftURL = leftTeamLogo.attr("src");
+                        calendarResult.setLeftTeamLogoURL(leftURL);
 
-                    // 우측 팀 로고
-                    Elements rightTeamLogo = row.select("img");
-                    String rightURL = rightTeamLogo.attr("src");
-                    calendarResult.setRightTeamLogoURL(rightURL);
+                        // 스코어
+                        String score = row.select("tbody > tr > td > strong.td_score").text();
+                        calendarResult.setScore(score);
 
-                    // 우측 팀 이름
-                    String rigthName = row.select("tbody > tr > td > span.team_rgt").text();
-                    calendarResult.setRightTeamName(rigthName);
+                        // 우측 팀 로고
+                        Element rightTeamLogo = row.select("img").get(1);
+                        String rightURL = rightTeamLogo.attr("src");
+                        calendarResult.setRightTeamLogoURL(rightURL);
 
-                    // 경기장 정보
-                    String stadium = row.select("tbody > tr > td > span.td_stadium").text();
-                    calendarResult.setStadium(stadium);
+                        // 우측 팀 이름
+                        String rigthName = row.select("tbody > tr > td > span.team_rgt").text();
+                        calendarResult.setRightTeamName(rigthName);
 
+                        // 경기장 정보
+                        if (row.select("tbody > tr > td > span.td_stadium").size() > 0) {
 
+                            String stadium = row.select("tbody > tr > td > span.td_stadium").get(1).text();
+                            calendarResult.setStadium(stadium);
+                        } else {
+                            calendarResult.setStadium("정보없음");
+                        }
 
+                        results.add(calendarResult);
 
-                    results.add(calendarResult);
+                    }
 
                 }
 
@@ -118,16 +126,14 @@ public class CalendarAndResultActivity extends BaseActivity {
 //            Picasso.with(mContext).load(map.get("팀로고")).resize(50,50).into(img);
 
             for (CalendarResult calendarResult : results) {
-               Log.d("날짜(요일)", calendarResult.getDate());
+                Log.d("날짜(요일)", calendarResult.getDate());
                 Log.d("시간", calendarResult.getTime());
                 Log.d("좌측팀이름", calendarResult.getLeftTeamName());
                 Log.d("좌측팀로고", calendarResult.getLeftTeamLogoURL());
                 Log.d("스코어", calendarResult.getScore());
                 Log.d("우측팀로고", calendarResult.getRightTeamLogoURL());
                 Log.d("우측팀이름", calendarResult.getRightTeamName());
-                Log.d("경기장정보" ,calendarResult.getStadium());
-
-
+                Log.d("경기장정보", calendarResult.getStadium());
 
 
             }
@@ -137,8 +143,6 @@ public class CalendarAndResultActivity extends BaseActivity {
 
         }
     }
-
-
 
 
     @Override
@@ -153,6 +157,7 @@ public class CalendarAndResultActivity extends BaseActivity {
 
     @Override
     public void bindView() {
+        this.infoTxt = (TextView) findViewById(R.id.infoTxt);
 
     }
 }
