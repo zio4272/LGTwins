@@ -134,7 +134,6 @@ public class CalendarAndResultActivity extends BaseActivity {
             }
 //            Glide.with(mContext).load(teams.get(0).getUrl()).into(img);
 
-//            TeamRecord();
 
         }
     }
