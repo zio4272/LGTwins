@@ -94,8 +94,14 @@ public class CalendarAndResultActivity extends BaseActivity {
                     calendarResult.setRightTeamName(rigthName);
 
                     // 경기장 정보
-                    String stadium = row.select("tbody > tr > td > span.td_stadium").text();
-                    calendarResult.setStadium(stadium);
+                    if (row.select("tbody > tr > td > span.td_stadium").size() > 0) {
+
+                        String stadium = row.select("tbody > tr > td > span.td_stadium").get(1).text();
+                        calendarResult.setStadium(stadium);
+                    }
+                    else {
+                        calendarResult.setStadium("정보없음");
+                    }
 
 
 
