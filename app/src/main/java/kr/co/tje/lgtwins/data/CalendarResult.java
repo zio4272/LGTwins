@@ -15,11 +15,12 @@ public class CalendarResult implements Serializable {
     private String score;
     private String rightTeamLogoURL;
     private String rightTeamName;
+    private String stadium;
 
     public CalendarResult() {
     }
 
-    public CalendarResult(String date, String time, String leftTeamName, String leftTeamLogoURL, String score, String rightTeamLogoURL, String rightTeamName) {
+    public CalendarResult(String date, String time, String leftTeamName, String leftTeamLogoURL, String score, String rightTeamLogoURL, String rightTeamName, String stadium) {
         this.date = date;
         this.time = time;
         this.leftTeamName = leftTeamName;
@@ -27,6 +28,7 @@ public class CalendarResult implements Serializable {
         this.score = score;
         this.rightTeamLogoURL = rightTeamLogoURL;
         this.rightTeamName = rightTeamName;
+        this.stadium = stadium;
     }
 
     public String getDate() {
@@ -83,5 +85,13 @@ public class CalendarResult implements Serializable {
 
     public void setRightTeamName(String rightTeamName) {
         this.rightTeamName = rightTeamName;
+    }
+
+    public String getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(String stadium) {
+        this.stadium = stadium;
     }
 }

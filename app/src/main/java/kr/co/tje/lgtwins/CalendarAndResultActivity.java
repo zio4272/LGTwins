@@ -63,18 +63,40 @@ public class CalendarAndResultActivity extends BaseActivity {
 
                     CalendarResult calendarResult = new CalendarResult();
 
-
                     // 날짜(요일)
-                    String date = row.select("span.td_date").first().text();
+                    String date = row.select("tbody > tr > td > span.td_date").text();
                     calendarResult.setDate(date);
 
                     // 시간
-                    String time = row.select("span").get(1).text();
+                    String time = row.select("tbody > tr > td > span.td_hour").text();
                     calendarResult.setTime(time);
 
                     // 좌측 팀 이름
-                    String leftName = row.select("span").get(2).text();
+                    String leftName = row.select("tbody > tr > td > span.team_lft").text();
                     calendarResult.setLeftTeamName(leftName);
+
+                    // 좌측 팀 로고
+                    Elements leftTeamLogo = row.select("img");
+                    String leftURL = leftTeamLogo.attr("src");
+                    calendarResult.setLeftTeamLogoURL(leftURL);
+
+                    // 스코어
+                    String score = row.select("tbody > tr > td > strong.td_score").text();
+                    calendarResult.setScore(score);
+
+                    // 우측 팀 로고
+                    Elements rightTeamLogo = row.select("img");
+                    String rightURL = rightTeamLogo.attr("src");
+                    calendarResult.setRightTeamLogoURL(rightURL);
+
+                    // 우측 팀 이름
+                    String rigthName = row.select("tbody > tr > td > span.team_rgt").text();
+                    calendarResult.setRightTeamName(rigthName);
+
+                    // 경기장 정보
+                    String stadium = row.select("tbody > tr > td > span.td_stadium").text();
+                    calendarResult.setStadium(stadium);
+
 
 
 
@@ -99,6 +121,13 @@ public class CalendarAndResultActivity extends BaseActivity {
                Log.d("날짜(요일)", calendarResult.getDate());
                 Log.d("시간", calendarResult.getTime());
                 Log.d("좌측팀이름", calendarResult.getLeftTeamName());
+                Log.d("좌측팀로고", calendarResult.getLeftTeamLogoURL());
+                Log.d("스코어", calendarResult.getScore());
+                Log.d("우측팀로고", calendarResult.getRightTeamLogoURL());
+                Log.d("우측팀이름", calendarResult.getRightTeamName());
+                Log.d("경기장정보" ,calendarResult.getStadium());
+
+
 
 
             }
