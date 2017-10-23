@@ -55,7 +55,7 @@ public class CalendarAndResultActivity extends BaseActivity {
                 Elements teamTable = document.select("div#calendarWrap.tb_wrap");
 
                 // 테이블의 한줄
-                Elements rows = teamTable.select("div.sch_tb");
+                Elements rows = teamTable.select("div");
 
 
                 for (int i = 0; i < rows.size(); i++) {
@@ -65,15 +65,15 @@ public class CalendarAndResultActivity extends BaseActivity {
 
 
                     // 날짜(요일)
-                    String date = rows.select("span.td_date").first().text();
+                    String date = row.select("span.td_date").first().text();
                     calendarResult.setDate(date);
 
                     // 시간
-                    String time = rows.select("span").get(1).text();
+                    String time = row.select("span").get(1).text();
                     calendarResult.setTime(time);
 
                     // 좌측 팀 이름
-                    String leftName = rows.select("span").get(2).text();
+                    String leftName = row.select("span").get(2).text();
                     calendarResult.setLeftTeamName(leftName);
 
 
