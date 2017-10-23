@@ -3,6 +3,13 @@ package kr.co.tje.lgtwins;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,11 +23,23 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.tje.lgtwins.data.CalendarResult;
-import kr.co.tje.lgtwins.data.Team;
 
 public class CalendarAndResultActivity extends BaseActivity {
 
+
     List<CalendarResult> results = new ArrayList<>();
+
+    private android.widget.TextView dateTxt;
+    private android.widget.TextView timeTxt;
+    private android.widget.ImageView teamLogoImg;
+    private android.widget.TextView teamNameTxt;
+    private android.widget.TextView stadiumTxt;
+    private android.widget.TextView scoreTxt;
+    private android.widget.TextView winLoseResultTxt;
+    private android.widget.LinearLayout winLoseResultLayout;
+    private android.widget.ListView calendarAndResultListView;
+    private android.widget.LinearLayout calendarLayout;
+    private LinearLayout asldkasldkasd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +101,7 @@ public class CalendarAndResultActivity extends BaseActivity {
                         // 좌측 팀 로고 = 검색되는 img들 중 첫번째 것.
 //                        Elements => Element로 수정.
                         Element leftTeamLogo = row.select("img").first();
-                        String leftURL = leftTeamLogo.attr("src");
+                        String leftURL = leftTeamLogo.attr("src").replace("25", "200");
                         calendarResult.setLeftTeamLogoURL(leftURL);
 
                         // 스코어
@@ -91,7 +110,7 @@ public class CalendarAndResultActivity extends BaseActivity {
 
                         // 우측 팀 로고 = 검색되는 img들 중 두번째 것.
                         Element rightTeamLogo = row.select("img").get(1);
-                        String rightURL = rightTeamLogo.attr("src");
+                        String rightURL = rightTeamLogo.attr("src").replace("25", "200");
                         calendarResult.setRightTeamLogoURL(rightURL);
 
                         // 우측 팀 이름
@@ -104,6 +123,7 @@ public class CalendarAndResultActivity extends BaseActivity {
 
                         results.add(calendarResult);
                     }
+
 
                 }
 
@@ -134,8 +154,53 @@ public class CalendarAndResultActivity extends BaseActivity {
             }
 //            Glide.with(mContext).load(teams.get(0).getUrl()).into(img);
 
+            CRview();
 
         }
+    }
+
+    private void CRview() {
+
+        LayoutInflater inf = LayoutInflater.from(mContext);
+
+        for (CalendarResult cr : results) {
+            View v = inf.inflate(R.layout.calendar_result_list_item, null);
+            this.winLoseResultTxt = (TextView) v.findViewById(R.id.winLoseResultTxt);
+            this.scoreTxt = (TextView) v.findViewById(R.id.scoreTxt);
+            this.stadiumTxt = (TextView) v.findViewById(R.id.stadiumTxt);
+            this.teamNameTxt = (TextView) v.findViewById(R.id.teamNameTxt);
+            this.teamLogoImg = (ImageView) v.findViewById(R.id.teamLogoImg);
+            this.timeTxt = (TextView) v.findViewById(R.id.timeTxt);
+            this.dateTxt = (TextView) v.findViewById(R.id.dateTxt);
+
+
+            dateTxt.setText(cr.getDate());
+            timeTxt.setText(cr.getTime());
+
+            // 좌측 팀 이름이 LG인 경우 강제로 우측팀명으로 변경
+            if (cr.getLeftTeamName().equals("LG")) {
+                teamNameTxt.setText(cr.getRightTeamName());
+            }
+
+            String lgLogo = "http://dthumb.phinf.naver.net/?src=http://imgsports.naver.net/images/emblem/new/kbo/default/LG.png&type=f200_200&refresh=1";
+            if (cr.getLeftTeamLogoURL().equals(lgLogo)) {
+                Glide.with(mContext).load(cr.getRightTeamLogoURL()).into(teamLogoImg);
+            }
+            else {
+                Glide.with(mContext).load(cr.getLeftTeamLogoURL()).into(teamLogoImg);
+            }
+
+
+
+            stadiumTxt.setText(cr.getStadium());
+            scoreTxt.setText(cr.getScore());
+
+
+            winLoseResultLayout.addView(v);
+
+        }
+
+
     }
 
 
@@ -147,10 +212,12 @@ public class CalendarAndResultActivity extends BaseActivity {
     @Override
     public void setValues() {
 
+
     }
 
     @Override
     public void bindView() {
+        this.winLoseResultLayout = (LinearLayout) findViewById(R.id.winLoseResultLayout);
 
     }
 }

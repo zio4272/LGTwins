@@ -7,11 +7,35 @@
     android:orientation="vertical"
     tools:context="kr.co.tje.lgtwins.CalendarAndResultActivity">
 
-    <TextView
-        android:id="@+id/infoTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여기나와요"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#E1E1E1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="날짜관련" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/winLoseResultLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>
