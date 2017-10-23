@@ -108,6 +108,7 @@ public class CalendarAndResultActivity extends BaseActivity {
                         String score = row.select("tbody > tr > td > strong.td_score").text();
                         calendarResult.setScore(score);
 
+
                         // 우측 팀 로고 = 검색되는 img들 중 두번째 것.
                         Element rightTeamLogo = row.select("img").get(1);
                         String rightURL = rightTeamLogo.attr("src").replace("25", "200");
@@ -180,6 +181,9 @@ public class CalendarAndResultActivity extends BaseActivity {
             // 좌측 팀 이름이 LG인 경우 강제로 우측팀명으로 변경
             if (cr.getLeftTeamName().equals("LG")) {
                 teamNameTxt.setText(cr.getRightTeamName());
+            }
+            else {
+                teamNameTxt.setText(cr.getLeftTeamName());
             }
 
             String lgLogo = "http://dthumb.phinf.naver.net/?src=http://imgsports.naver.net/images/emblem/new/kbo/default/LG.png&type=f200_200&refresh=1";
