@@ -3,7 +3,6 @@ package kr.co.tje.lgtwins;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,17 +16,16 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.tje.lgtwins.data.CalendarResult;
+import kr.co.tje.lgtwins.data.Team;
 
 public class CalendarAndResultActivity extends BaseActivity {
 
     List<CalendarResult> results = new ArrayList<>();
-    private android.widget.TextView infoTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_and_result);
-
         bindView();
         setupEvent();
         setValues();
@@ -62,10 +60,12 @@ public class CalendarAndResultActivity extends BaseActivity {
                 for (int i = 0; i < rows.size(); i++) {
                     Element row = rows.get(i);
 
-                    CalendarResult calendarResult = new CalendarResult();
-
-                    // 경기정보가 없을경우를 먼저 처리 해줘야함
+                    // 경기장 정보를 가져와본다.
+//                    네이버 관찰 결과 경기가 없는날은 경기장 정보도 없다.
+//                    경기장 정보가 있는 경우에만 파싱을 마저 진행한다.
                     if (row.select("tbody > tr > td > span.td_stadium").size() > 0) {
+
+                        CalendarResult calendarResult = new CalendarResult();
 
                         // 날짜(요일)
                         String date = row.select("tbody > tr > td > span.td_date").text();
@@ -79,8 +79,9 @@ public class CalendarAndResultActivity extends BaseActivity {
                         String leftName = row.select("tbody > tr > td > span.team_lft").text();
                         calendarResult.setLeftTeamName(leftName);
 
-                        // 좌측 팀 로고
-                        Element leftTeamLogo = row.select("img").get(0);
+                        // 좌측 팀 로고 = 검색되는 img들 중 첫번째 것.
+//                        Elements => Element로 수정.
+                        Element leftTeamLogo = row.select("img").first();
                         String leftURL = leftTeamLogo.attr("src");
                         calendarResult.setLeftTeamLogoURL(leftURL);
 
@@ -88,7 +89,7 @@ public class CalendarAndResultActivity extends BaseActivity {
                         String score = row.select("tbody > tr > td > strong.td_score").text();
                         calendarResult.setScore(score);
 
-                        // 우측 팀 로고
+                        // 우측 팀 로고 = 검색되는 img들 중 두번째 것.
                         Element rightTeamLogo = row.select("img").get(1);
                         String rightURL = rightTeamLogo.attr("src");
                         calendarResult.setRightTeamLogoURL(rightURL);
@@ -97,17 +98,11 @@ public class CalendarAndResultActivity extends BaseActivity {
                         String rigthName = row.select("tbody > tr > td > span.team_rgt").text();
                         calendarResult.setRightTeamName(rigthName);
 
-                        // 경기장 정보
-                        if (row.select("tbody > tr > td > span.td_stadium").size() > 0) {
+                        String stadium = row.select("tbody > tr > td > span.td_stadium").get(1).text();
+                        calendarResult.setStadium(stadium);
 
-                            String stadium = row.select("tbody > tr > td > span.td_stadium").get(1).text();
-                            calendarResult.setStadium(stadium);
-                        } else {
-                            calendarResult.setStadium("정보없음");
-                        }
 
                         results.add(calendarResult);
-
                     }
 
                 }
@@ -157,7 +152,6 @@ public class CalendarAndResultActivity extends BaseActivity {
 
     @Override
     public void bindView() {
-        this.infoTxt = (TextView) findViewById(R.id.infoTxt);
 
     }
 }
