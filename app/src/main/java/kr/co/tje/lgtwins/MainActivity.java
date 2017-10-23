@@ -74,6 +74,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     private TextView skyTxt;
     private android.widget.ImageView skyImage;
     private LinearLayout teamRankLayout;
+    private LinearLayout calendarAndResultLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,6 +239,14 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void setupEvent() {
+
+        calendarAndResultLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, CalendarAndResultActivity.class);
+                startActivity(intent);
+            }
+        });
 
         teamRankLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -415,6 +424,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.playerMenu = (LinearLayout) findViewById(R.id.playerMenu);
         this.homeMenu = (LinearLayout) findViewById(R.id.homeMenu);
         this.teamRankLayout = (LinearLayout) findViewById(R.id.teamRankLayout);
+        this.calendarAndResultLayout = (LinearLayout) findViewById(R.id.calendarAndResultLayout);
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         this.skyImage = (ImageView) findViewById(R.id.skyImage);
         this.skyTxt = (TextView) findViewById(R.id.skyTxt);
