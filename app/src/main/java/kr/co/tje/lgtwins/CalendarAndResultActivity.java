@@ -35,11 +35,12 @@ public class CalendarAndResultActivity extends BaseActivity {
     private android.widget.TextView teamNameTxt;
     private android.widget.TextView stadiumTxt;
     private android.widget.TextView scoreTxt;
-    private android.widget.TextView winLoseResultTxt;
+    private android.widget.TextView winResultTxt;
     private android.widget.LinearLayout winLoseResultLayout;
     private android.widget.ListView calendarAndResultListView;
     private android.widget.LinearLayout calendarLayout;
     private LinearLayout asldkasldkasd;
+    private TextView loseResultTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +176,8 @@ public class CalendarAndResultActivity extends BaseActivity {
 
         for (CalendarResult cr : results) {
             View v = inf.inflate(R.layout.calendar_result_list_item, null);
-            this.winLoseResultTxt = (TextView) v.findViewById(R.id.winLoseResultTxt);
+            this.loseResultTxt = (TextView) v.findViewById(R.id.loseResultTxt);
+            this.winResultTxt = (TextView) v.findViewById(R.id.winResultTxt);
             this.scoreTxt = (TextView) v.findViewById(R.id.scoreTxt);
             this.stadiumTxt = (TextView) v.findViewById(R.id.stadiumTxt);
             this.teamNameTxt = (TextView) v.findViewById(R.id.teamNameTxt);
@@ -193,18 +195,22 @@ public class CalendarAndResultActivity extends BaseActivity {
                 teamNameTxt.setText(cr.getRightTeamName());
                 // 왼쪽 점수가 오른쪽 점수보다 크면
                 if (cr.getLeftScore() > cr.getRightScore()) {
-                    winLoseResultTxt.setText("승");
+                    winResultTxt.setVisibility(View.VISIBLE);
+                    loseResultTxt.setVisibility(View.GONE);
                 } else if (cr.getRightScore() > cr.getLeftScore()) {
-                    winLoseResultTxt.setText("패");
+                    winResultTxt.setVisibility(View.GONE);
+                    loseResultTxt.setVisibility(View.VISIBLE);
                 }
 
             } else if (cr.getRightTeamName().equals("LG")) {
                 teamNameTxt.setText(cr.getLeftTeamName());
 
                 if (cr.getLeftScore() < cr.getRightScore()) {
-                    winLoseResultTxt.setText("승");
+                    winResultTxt.setVisibility(View.VISIBLE);
+                    loseResultTxt.setVisibility(View.GONE);
                 } else if (cr.getRightScore() < cr.getLeftScore()) {
-                    winLoseResultTxt.setText("패");
+                    winResultTxt.setVisibility(View.GONE);
+                    loseResultTxt.setVisibility(View.VISIBLE);
                 }
             } else {
 
