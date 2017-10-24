@@ -2,15 +2,17 @@ package kr.co.tje.lgtwins;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.shawnlin.numberpicker.NumberPicker;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -23,10 +25,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.tje.lgtwins.adapter.SpinnerAdapter;
 import kr.co.tje.lgtwins.data.Team;
 
 // 2017-10-21
 public class TeamRankActivity extends BaseActivity {
+
+    Spinner spinner;
+    SpinnerAdapter mAdapter;
 
 
     List<Team> teams = new ArrayList<>();
@@ -35,6 +41,8 @@ public class TeamRankActivity extends BaseActivity {
     private ImageView teamLogoImg;
     private TextView teamNameTxt;
     private LinearLayout teamInfo;
+    private TextView selectYearsTxt;
+    private NumberPicker numberpicker;
 
 
     @Override
@@ -63,7 +71,8 @@ public class TeamRankActivity extends BaseActivity {
         protected Map<String, String> doInBackground(Void... params) {
             Map<String, String> result = new HashMap<String, String>();
             try {
-                Document document = Jsoup.connect("http://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo")
+                String years = "";
+                Document document = Jsoup.connect("http://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo&year=" + years + "")
                         .userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
                         .get();
 
@@ -241,6 +250,23 @@ public class TeamRankActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+        //데이터
+        List<String> years = new ArrayList<>();
+        years.add("1991"); years.add("1992"); years.add("1993"); years.add("1994");
+
+        //UI생성
+        spinner = (Spinner)findViewById(R.id.spinner);
+        spinner.setSelection(27);
+
+        //Adapter
+        mAdapter = new SpinnerAdapter(this, years);
+
+        //Adapter 적용
+        spinner.setAdapter(mAdapter);
+
+
+
+
 
 
     }
@@ -249,6 +275,8 @@ public class TeamRankActivity extends BaseActivity {
     public void bindView() {
         this.teamRankRecordLayout = (LinearLayout) findViewById(R.id.teamRankRecordLayout);
         this.teamInfo = (LinearLayout) findViewById(R.id.teamInfo);
+//        this.selectYearsTxt = (TextView) findViewById(R.id.selectYearsTxt);
+
 
 
     }

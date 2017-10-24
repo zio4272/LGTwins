@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,188 +9,174 @@
     tools:context="kr.co.tje.lgtwins.TeamRankActivity">
 
 
-
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="2017" />
-
-    </LinearLayout>
+        android:layout_margin="20dp"
+        android:background="@drawable/spinner_normal_background" />
 
 
+    <!--<TextView-->
+    <!--android:id="@+id/selectYearsTxt"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:gravity="center"-->
+    <!--android:text="2017" />-->
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#F0F0F0"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-
-
-            <LinearLayout
-                android:background="#FFFFFF"
-                android:id="@+id/teamInfo"
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="팀순위"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-
-                    android:background="#F0F0F0"/>
-
-
-
-
-
-
-            </LinearLayout>
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#DCDCDC"/>
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-
-
+                android:orientation="horizontal">
 
 
                 <LinearLayout
-                    android:background="#F5F5F5"
-                    android:id="@+id/teamRankRecordLayout"
-                    android:layout_width="match_parent"
+                    android:id="@+id/teamInfo"
+                    android:layout_width="110dp"
                     android:layout_height="match_parent"
+                    android:background="#FFFFFF"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:orientation="horizontal">
-
-
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:text="경기"/>
-
-                        <TextView
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="승"/>
-
-                        <TextView
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="패"/>
-
-                        <TextView
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="무"/>
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="승률"/>
-
-                        <TextView
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="승차"/>
-
-                        <TextView
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="연속"/>
-
-                        <TextView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="#F0F0F0"/>
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="출루율"/>
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="장타율"/>
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="최근10경기"/>
-
-
-
-                    </LinearLayout>
+                        android:gravity="center"
+                        android:text="팀순위" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#F0F0F0"/>
 
-
-
-
+                        android:background="#F0F0F0" />
 
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#DCDCDC" />
 
-            </HorizontalScrollView>
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
 
+                    <LinearLayout
+                        android:id="@+id/teamRankRecordLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#F5F5F5"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="경기" />
+
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="승" />
+
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="패" />
+
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="무" />
+
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="승률" />
+
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="승차" />
+
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="연속" />
+
+                            <TextView
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="#F0F0F0" />
+
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="출루율" />
+
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="장타율" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="최근10경기" />
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#F0F0F0" />
+
+
+                    </LinearLayout>
+
+
+                </HorizontalScrollView>
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
 
-    </LinearLayout>
-
-
-
     </ScrollView>
+
 
 </LinearLayout>
