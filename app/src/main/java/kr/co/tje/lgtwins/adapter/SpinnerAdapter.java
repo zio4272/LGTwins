@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,14 +25,13 @@ public class SpinnerAdapter extends BaseAdapter {
     public SpinnerAdapter(Context context, List<String> list) {
         mContext = context;
         mList = list;
-        inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inf = LayoutInflater.from(mContext);
     }
 
 
     @Override
     public int getCount() {
-        if (mList != null) return mList.size();
-        else return 0;
+        return mList.size();
     }
 
     @Override

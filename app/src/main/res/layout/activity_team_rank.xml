@@ -9,12 +9,17 @@
     tools:context="kr.co.tje.lgtwins.TeamRankActivity">
 
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/spinner_normal_background" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/spinner_normal_background" />
+
+
+
+
+
 
 
     <!--<TextView-->
@@ -31,7 +36,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -54,15 +59,16 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="팀순위" />
-
-                    <TextView
-                        android:layout_width="match_parent"
                         android:layout_height="1dp"
 
                         android:background="#F0F0F0" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:text="팀순위" />
 
 
                 </LinearLayout>

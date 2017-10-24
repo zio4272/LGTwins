@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import kr.co.tje.lgtwins.adapter.SpinnerAdapter;
@@ -33,6 +35,9 @@ public class TeamRankActivity extends BaseActivity {
 
     Spinner spinner;
     SpinnerAdapter mAdapter;
+
+    List<String> years = new ArrayList<>();
+    String selecteYear = "2017";
 
 
     List<Team> teams = new ArrayList<>();
@@ -71,8 +76,8 @@ public class TeamRankActivity extends BaseActivity {
         protected Map<String, String> doInBackground(Void... params) {
             Map<String, String> result = new HashMap<String, String>();
             try {
-                String years = "";
-                Document document = Jsoup.connect("http://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo&year=" + years + "")
+
+                Document document = Jsoup.connect("http://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo&year=" + selecteYear + "")
                         .userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
                         .get();
 
@@ -81,6 +86,7 @@ public class TeamRankActivity extends BaseActivity {
                 // 테이블의 한줄
                 Elements rows = teamTable.select("tr");
 
+                teams.clear();
 
                 for (int i = 0; i < rows.size(); i++) {
 //                    한줄 통채로
@@ -146,6 +152,7 @@ public class TeamRankActivity extends BaseActivity {
 
                     teams.add(team);
 
+
                 }
 
 
@@ -157,9 +164,6 @@ public class TeamRankActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Map<String, String> map) {
-//            text.setText(map.get("span"));
-//            Glide.with(mContext).load(map.get("팀로고")).into(img);
-//            Picasso.with(mContext).load(map.get("팀로고")).resize(50,50).into(img);
 
             for (Team team : teams) {
                 Log.d("팀로고", team.getUrl());
@@ -186,6 +190,10 @@ public class TeamRankActivity extends BaseActivity {
     }
 
     public void TeamRecord() {
+
+        teamRankRecordLayout.removeAllViews();
+        teamInfo.removeAllViews();
+
 
         LayoutInflater inf = LayoutInflater.from(mContext);
 
@@ -245,28 +253,38 @@ public class TeamRankActivity extends BaseActivity {
     public void setupEvent() {
 
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selecteYear = years.get(i);
+                NaverBaseballTeamRank task = new NaverBaseballTeamRank();
+                task.execute();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
     }
 
 
     @Override
     public void setValues() {
-        //데이터
-        List<String> years = new ArrayList<>();
-        years.add("1991"); years.add("1992"); years.add("1993"); years.add("1994");
 
-        //UI생성
-        spinner = (Spinner)findViewById(R.id.spinner);
-        spinner.setSelection(27);
 
-        //Adapter
-        mAdapter = new SpinnerAdapter(this, years);
+        for (int i = 1991; i <= 2017; i++) {
+            years.add(String.format(Locale.KOREA, "%d", i));
+        }
 
-        //Adapter 적용
+
+        mAdapter = new SpinnerAdapter(mContext, years);
         spinner.setAdapter(mAdapter);
 
-
-
-
+        // 27번째 2017에서 시작
+        spinner.setSelection(26);
 
 
     }
@@ -275,8 +293,8 @@ public class TeamRankActivity extends BaseActivity {
     public void bindView() {
         this.teamRankRecordLayout = (LinearLayout) findViewById(R.id.teamRankRecordLayout);
         this.teamInfo = (LinearLayout) findViewById(R.id.teamInfo);
+        spinner = (Spinner) findViewById(R.id.spinner);
 //        this.selectYearsTxt = (TextView) findViewById(R.id.selectYearsTxt);
-
 
 
     }
