@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +30,7 @@ public class CalendarAndResultActivity extends BaseActivity {
 
 
     List<CalendarResult> results = new ArrayList<>();
+    List<String> category = new ArrayList<>();
 
     private android.widget.TextView dateTxt;
     private android.widget.TextView timeTxt;
@@ -41,6 +44,8 @@ public class CalendarAndResultActivity extends BaseActivity {
     private android.widget.LinearLayout calendarLayout;
     private LinearLayout asldkasldkasd;
     private TextView loseResultTxt;
+    private android.widget.Spinner yearSelectSpinner;
+    private android.widget.Spinner monthSelectSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,6 +246,31 @@ public class CalendarAndResultActivity extends BaseActivity {
     @Override
     public void setupEvent() {
 
+        yearSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
+
+    // 년 스피너 클릭시 월 스피너 관련
+    private void monthSelect(int categoryId) {
+
+        category.clear();
+
+        if (categoryId == 0) {
+
+        }
+
+
+
     }
 
     @Override
@@ -252,6 +282,8 @@ public class CalendarAndResultActivity extends BaseActivity {
     @Override
     public void bindView() {
         this.winLoseResultLayout = (LinearLayout) findViewById(R.id.winLoseResultLayout);
+        this.monthSelectSpinner = (Spinner) findViewById(R.id.monthSelectSpinner);
+        this.yearSelectSpinner = (Spinner) findViewById(R.id.yearSelectSpinner);
 
     }
 }
