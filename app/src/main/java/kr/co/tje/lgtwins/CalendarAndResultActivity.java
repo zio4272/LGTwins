@@ -82,7 +82,7 @@ public class CalendarAndResultActivity extends BaseActivity {
                     // 경기장 정보를 가져와본다.
 //                    네이버 관찰 결과 경기가 없는날은 경기장 정보도 없다.
 //                    경기장 정보가 있는 경우에만 파싱을 마저 진행한다.
-                    if (row.select("tbody > tr > td > span.td_stadium").size() > 0) {
+                    if (row.select("tbody > tr > td > span.td_stadium").size() > 0 && !row.select("tbody > tr > td > strong.td_score").text().equals("VS")) {
 
                         CalendarResult calendarResult = new CalendarResult();
 
@@ -107,6 +107,13 @@ public class CalendarAndResultActivity extends BaseActivity {
                         // 스코어
                         String score = row.select("tbody > tr > td > strong.td_score").text();
                         calendarResult.setScore(score);
+                        String leftScore = score.split(":")[0];
+                        String rightScore = score.split(":")[1];
+
+                        calendarResult.setLeftScore(Integer.parseInt(leftScore));
+                        calendarResult.setRightScore(Integer.parseInt(rightScore));
+
+
 
 
                         // 우측 팀 로고 = 검색되는 img들 중 두번째 것.
@@ -150,6 +157,8 @@ public class CalendarAndResultActivity extends BaseActivity {
                 Log.d("우측팀로고", calendarResult.getRightTeamLogoURL());
                 Log.d("우측팀이름", calendarResult.getRightTeamName());
                 Log.d("경기장정보", calendarResult.getStadium());
+                Log.d("왼쪽점수", calendarResult.getLeftScore()+"");
+
 
 
             }
@@ -178,22 +187,37 @@ public class CalendarAndResultActivity extends BaseActivity {
             dateTxt.setText(cr.getDate());
             timeTxt.setText(cr.getTime());
 
+
             // 좌측 팀 이름이 LG인 경우 강제로 우측팀명으로 변경
             if (cr.getLeftTeamName().equals("LG")) {
                 teamNameTxt.setText(cr.getRightTeamName());
-            }
-            else {
+                // 왼쪽 점수가 오른쪽 점수보다 크면
+                if (cr.getLeftScore() > cr.getRightScore()) {
+                    winLoseResultTxt.setText("승");
+                } else if (cr.getRightScore() > cr.getLeftScore()) {
+                    winLoseResultTxt.setText("패");
+                }
+
+            } else if (cr.getRightTeamName().equals("LG")) {
+                teamNameTxt.setText(cr.getLeftTeamName());
+
+                if (cr.getLeftScore() < cr.getRightScore()) {
+                    winLoseResultTxt.setText("승");
+                } else if (cr.getRightScore() < cr.getLeftScore()) {
+                    winLoseResultTxt.setText("패");
+                }
+            } else {
+
                 teamNameTxt.setText(cr.getLeftTeamName());
             }
+
 
             String lgLogo = "http://dthumb.phinf.naver.net/?src=http://imgsports.naver.net/images/emblem/new/kbo/default/LG.png&type=f200_200&refresh=1";
             if (cr.getLeftTeamLogoURL().equals(lgLogo)) {
                 Glide.with(mContext).load(cr.getRightTeamLogoURL()).into(teamLogoImg);
-            }
-            else {
+            } else {
                 Glide.with(mContext).load(cr.getLeftTeamLogoURL()).into(teamLogoImg);
             }
-
 
 
             stadiumTxt.setText(cr.getStadium());
