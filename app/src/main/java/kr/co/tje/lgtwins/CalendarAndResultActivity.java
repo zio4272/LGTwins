@@ -76,7 +76,7 @@ public class CalendarAndResultActivity extends BaseActivity {
                 Elements rows = teamTable.select("div");
 
 
-                for (int i = 0; i < rows.size(); i++) {
+                for (int i = 1; i < rows.size(); i++) {
                     Element row = rows.get(i);
 
                     // 경기장 정보를 가져와본다.
