@@ -20,8 +20,10 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import kr.co.tje.lgtwins.data.CalendarResult;
@@ -30,7 +32,12 @@ public class CalendarAndResultActivity extends BaseActivity {
 
 
     List<CalendarResult> results = new ArrayList<>();
-    List<String> category = new ArrayList<>();
+    List<String> years = new ArrayList<>();
+    List<String> months = new ArrayList<>();
+
+    String selectYear = "2017";
+    String selectMonth = "08";
+
 
     private android.widget.TextView dateTxt;
     private android.widget.TextView timeTxt;
@@ -72,7 +79,7 @@ public class CalendarAndResultActivity extends BaseActivity {
         protected Map<String, String> doInBackground(Void... params) {
             Map<String, String> result = new HashMap<String, String>();
             try {
-                Document document = Jsoup.connect("http://sports.news.naver.com/kbaseball/schedule/index.nhn?date=20171021&month=08&year=2017&teamCode=LG")
+                Document document = Jsoup.connect("http://sports.news.naver.com/kbaseball/schedule/index.nhn?date=20171021&month= " + selectMonth + "&year=" + selectYear + "&teamCode=LG")
                         .userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
                         .get();
 
@@ -80,6 +87,8 @@ public class CalendarAndResultActivity extends BaseActivity {
 
                 // 테이블의 한줄
                 Elements rows = teamTable.select("div");
+
+                results.clear();
 
 
                 for (int i = 1; i < rows.size(); i++) {
@@ -118,8 +127,6 @@ public class CalendarAndResultActivity extends BaseActivity {
 
                         calendarResult.setLeftScore(Integer.parseInt(leftScore));
                         calendarResult.setRightScore(Integer.parseInt(rightScore));
-
-
 
 
                         // 우측 팀 로고 = 검색되는 img들 중 두번째 것.
@@ -163,8 +170,7 @@ public class CalendarAndResultActivity extends BaseActivity {
                 Log.d("우측팀로고", calendarResult.getRightTeamLogoURL());
                 Log.d("우측팀이름", calendarResult.getRightTeamName());
                 Log.d("경기장정보", calendarResult.getStadium());
-                Log.d("왼쪽점수", calendarResult.getLeftScore()+"");
-
+                Log.d("왼쪽점수", calendarResult.getLeftScore() + "");
 
 
             }
@@ -176,6 +182,8 @@ public class CalendarAndResultActivity extends BaseActivity {
     }
 
     private void CRview() {
+
+        winLoseResultLayout.removeAllViews();
 
         LayoutInflater inf = LayoutInflater.from(mContext);
 
@@ -249,7 +257,24 @@ public class CalendarAndResultActivity extends BaseActivity {
         yearSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectYear = years.get(i);
+                CalendarAndResult task = new CalendarAndResult();
+                task.execute();
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        monthSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectMonth = months.get(i);
+                CalendarAndResult task = new CalendarAndResult();
+                task.execute();
             }
 
             @Override
@@ -260,21 +285,17 @@ public class CalendarAndResultActivity extends BaseActivity {
 
     }
 
-    // 년 스피너 클릭시 월 스피너 관련
-    private void monthSelect(int categoryId) {
-
-        category.clear();
-
-        if (categoryId == 0) {
-
-        }
-
-
-
-    }
 
     @Override
     public void setValues() {
+
+        for (int i = 2008; i <= 2017; i++) {
+            years.add(String.format(Locale.KOREA, "%d", i));
+        }
+
+        for (int j = 1; j <= 12; j++) {
+            months.add(String.format(Locale.KOREA, "%d", j));
+        }
 
 
     }
