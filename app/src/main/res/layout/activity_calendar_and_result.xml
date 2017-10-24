@@ -13,12 +13,31 @@
         android:layout_height="50dp"
         android:background="#E1E1E1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Spinner
+            android:textAlignment="center"
+            android:id="@+id/yearSelectSpinner"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="날짜관련" />
+            android:entries="@array/yearSelectSpinner"
+            android:spinnerMode="dropdown">
+
+        </Spinner>
+
+        <Spinner
+            android:textAlignment="center"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/monthSelectSpinner"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/monthSelectSpinner"
+            android:spinnerMode="dropdown">
+
+        </Spinner>
+
     </LinearLayout>
 
     <ScrollView

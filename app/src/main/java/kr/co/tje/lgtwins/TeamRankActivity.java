@@ -2,6 +2,7 @@ package kr.co.tje.lgtwins;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.ListPopupWindow;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -275,6 +277,7 @@ public class TeamRankActivity extends BaseActivity {
     public void setValues() {
 
 
+
         for (int i = 1991; i <= 2017; i++) {
             years.add(String.format(Locale.KOREA, "%d", i));
         }
@@ -283,8 +286,14 @@ public class TeamRankActivity extends BaseActivity {
         mAdapter = new SpinnerAdapter(mContext, years);
         spinner.setAdapter(mAdapter);
 
+
+
         // 27번째 2017에서 시작
         spinner.setSelection(26);
+
+
+
+
 
 
     }
