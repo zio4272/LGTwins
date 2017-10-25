@@ -294,7 +294,10 @@ public class CalendarAndResultActivity extends BaseActivity {
     @Override
     public void setValues() {
 
-        for (int i = 2008; i <= 2017; i++) {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+
+        for (int i = 2008; i <= currentYear; i++) {
             years.add(String.format(Locale.KOREA, "%d", i));
         }
 
@@ -308,11 +311,12 @@ public class CalendarAndResultActivity extends BaseActivity {
         crMonthAdapter = new CRMonthAdapter(mContext, months);
         monthSelectSpinner.setAdapter(crMonthAdapter);
 
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        String currentYearStr = String.format(Locale.KOREA, "%d", currentYear);
 
-        yearSelectSpinner.setSelection(9);
-        monthSelectSpinner.setSelection(9);
+        int index = years.indexOf(currentYearStr);
+
+        yearSelectSpinner.setSelection(index);
+        monthSelectSpinner.setSelection(currentMonth);
 
 
 
