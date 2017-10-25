@@ -1,8 +1,8 @@
 package kr.co.tje.lgtwins;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,21 +21,16 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
 import com.restfb.FacebookClient;
-import com.restfb.types.GraphResponse;
-import com.restfb.types.Post;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Handler;
 
 import kr.co.tje.lgtwins.adapter.NoticeAndEventAdapter;
 import kr.co.tje.lgtwins.adapter.PostAdapter;
@@ -46,6 +41,12 @@ import kr.co.tje.lgtwins.util.ServerUtil;
 
 
 public class MainActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+
+
+    public static MainActivity act;
+
+    private static final long FINISH_INTERVAL_TIME = 2000;
+    private long backPressedTime = 0;
 
     SliderLayout sliderLayout;
 
@@ -89,32 +90,20 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     private FacebookClient facebookClient;
     private ListView lvArticleListView;
+    private TextView facebookTxt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        act = this;
         bindView();
         setupEvent();
         setValues();
 
-        GraphRequest request = GraphRequest.newGraphPathRequest(accessToken, "/997476320324005/feed", new GraphRequest.Callback() {
-            @Override
-            public void onCompleted(com.facebook.GraphResponse response) {
-                Log.d("뭐나오나요", response.toString());
-
-            }
-        });
-
-        request.executeAsync();
 
 
-        ServerUtil.FacebookAccessToken(mContext, new ServerUtil.JsonResponseHandler() {
-            @Override
-            public void onResponse(JSONObject json) {
-                Log.d("페이스북ACCESS_TOKEN", json.toString());
-            }
-        });
 
 
 //        어플 시작시 무조건 실행
@@ -518,9 +507,21 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 //
 //    }
 
-    public void backPressed() {
+    @Override
+    public void onBackPressed() {
+
+        // 현재시간
+        long currentTime = System.currentTimeMillis();
+        // 간격
+        long intervalTime = currentTime - backPressedTime;
+        // FINISH_INTERVAL_TIME 2초
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed();
+        } else {
+            backPressedTime = currentTime;
+            Toast.makeText(mContext, "한 번 더 누르면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
 
     }
-
 
 }

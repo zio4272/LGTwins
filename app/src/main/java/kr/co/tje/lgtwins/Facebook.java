@@ -23,7 +23,7 @@ public class Facebook {
     // 인증과 관련된 상수들
     private static final String APP_ID = "1648925831797110";
     private static final String APP_SECRET = "af55a6b5cb9fb9d5bfe354c9f0489957";
-    private static final String ACCESS_TOKEN = "1648925831797110|fi5BBS1tpdW29Mb-PgCsj_vqeII";
+    public static final String ACCESS_TOKEN = "1648925831797110|fi5BBS1tpdW29Mb-PgCsj_vqeII";
 
     private Context mContext;
 
