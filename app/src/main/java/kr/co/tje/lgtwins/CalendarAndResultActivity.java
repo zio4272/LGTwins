@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import kr.co.tje.lgtwins.adapter.CRMonthAdapter;
+import kr.co.tje.lgtwins.adapter.CRYearAdapter;
 import kr.co.tje.lgtwins.data.CalendarResult;
 
 public class CalendarAndResultActivity extends BaseActivity {
@@ -37,6 +39,9 @@ public class CalendarAndResultActivity extends BaseActivity {
 
     String selectYear = "2017";
     String selectMonth = "08";
+
+    CRYearAdapter crYearAdapter;
+    CRMonthAdapter crMonthAdapter;
 
 
     private android.widget.TextView dateTxt;
@@ -296,6 +301,20 @@ public class CalendarAndResultActivity extends BaseActivity {
         for (int j = 1; j <= 12; j++) {
             months.add(String.format(Locale.KOREA, "%d", j));
         }
+
+        crYearAdapter = new CRYearAdapter(mContext, years);
+        yearSelectSpinner.setAdapter(crYearAdapter);
+
+        crMonthAdapter = new CRMonthAdapter(mContext, months);
+        monthSelectSpinner.setAdapter(crMonthAdapter);
+
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+
+        yearSelectSpinner.setSelection(9);
+        monthSelectSpinner.setSelection(9);
+
+
 
 
     }
