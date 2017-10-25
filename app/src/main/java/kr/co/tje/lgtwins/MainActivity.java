@@ -2,6 +2,7 @@ package kr.co.tje.lgtwins;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,15 +20,22 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.restfb.FacebookClient;
+import com.restfb.types.GraphResponse;
+import com.restfb.types.Post;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Handler;
 
 import kr.co.tje.lgtwins.adapter.NoticeAndEventAdapter;
 import kr.co.tje.lgtwins.adapter.PostAdapter;
@@ -50,7 +58,10 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     HashMap<String, String> HashMapForURL;
     HashMap<String, Integer> HashMapForLocalRes;
 
+    private AccessToken accessToken;
+
     TabHost tabHost;
+
 
     private com.sothree.slidinguppanel.SlidingUpPanelLayout slidinglayout;
     private android.widget.ListView postListView;
@@ -76,6 +87,9 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
     private LinearLayout teamRankLayout;
     private LinearLayout calendarAndResultLayout;
 
+    private FacebookClient facebookClient;
+    private ListView lvArticleListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +97,24 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         bindView();
         setupEvent();
         setValues();
+
+        GraphRequest request = GraphRequest.newGraphPathRequest(accessToken, "/997476320324005/feed", new GraphRequest.Callback() {
+            @Override
+            public void onCompleted(com.facebook.GraphResponse response) {
+                Log.d("뭐나오나요", response.toString());
+
+            }
+        });
+
+        request.executeAsync();
+
+
+        ServerUtil.FacebookAccessToken(mContext, new ServerUtil.JsonResponseHandler() {
+            @Override
+            public void onResponse(JSONObject json) {
+                Log.d("페이스북ACCESS_TOKEN", json.toString());
+            }
+        });
 
 
 //        어플 시작시 무조건 실행
@@ -211,6 +243,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
 
 
     }
+
 
     // URL에서 이미지 불러오기 (인터넷 권한 설정 해야함)
     private void AddImagesUrlOnline() {
@@ -426,6 +459,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.teamRankLayout = (LinearLayout) findViewById(R.id.teamRankLayout);
         this.calendarAndResultLayout = (LinearLayout) findViewById(R.id.calendarAndResultLayout);
         this.slidinglayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        this.lvArticleListView = (ListView) findViewById(R.id.lvArticleListView);
         this.skyImage = (ImageView) findViewById(R.id.skyImage);
         this.skyTxt = (TextView) findViewById(R.id.skyTxt);
         this.currentTempTxt = (TextView) findViewById(R.id.currentTempTxt);
@@ -442,6 +476,7 @@ public class MainActivity extends BaseActivity implements BaseSliderView.OnSlide
         this.sliderImage = (SliderLayout) findViewById(R.id.sliderImage);
         this.seeMoreMenuLayout = (LinearLayout) findViewById(R.id.seeMoreMenuLayout);
         this.playerLayout = (LinearLayout) findViewById(R.id.playerLayout);
+
     }
 
     @Override

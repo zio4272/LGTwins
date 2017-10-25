@@ -69,9 +69,9 @@ public class AsyncHttpRequest {
 				public String doInBackground() {
 
 					if (params == null)
-						return HttpRequest.get(url).header("appKey", "24ed134c-67f2-37f4-a1b4-212b86e80067").body();
+						return HttpRequest.get(url).header("appKey", "24ed134c-67f2-37f4-a1b4-212b86e80067").trustAllCerts().body();
 					else
-						return HttpRequest.get(url).header("appKey", "24ed134c-67f2-37f4-a1b4-212b86e80067").form(params).body();
+						return HttpRequest.get(url).header("appKey", "24ed134c-67f2-37f4-a1b4-212b86e80067").trustAllCerts().form(params).body();
 				}
 			};
 

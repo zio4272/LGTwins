@@ -290,6 +290,13 @@
 
             </LinearLayout>
 
+            <ListView
+                android:id="@+id/lvArticleListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
             <!--날씨관련 레이아웃 종료-->
 
             <TextView
