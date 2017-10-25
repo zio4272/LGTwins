@@ -9,11 +9,12 @@
     tools:context="kr.co.tje.lgtwins.LoginActivity">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:src="@drawable/lg_twins_2017" />
+        android:src="@drawable/lg_twins" />
 
     <LinearLayout
         android:padding="20dp"
@@ -27,6 +28,7 @@
             android:layout_height="match_parent">
 
             <EditText
+                android:inputType="text"
                 android:selectAllOnFocus="true"
                 android:id="@+id/idEdt"
                 android:paddingLeft="20dp"
@@ -47,6 +49,7 @@
 
 
         <EditText
+            android:inputType="textPassword"
             android:id="@+id/pwEdt"
             android:paddingLeft="20dp"
             android:paddingBottom="20dp"

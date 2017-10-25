@@ -85,7 +85,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@drawable/emblem" />
+                android:src="@drawable/lg_twins" />
 
 
             <TabHost

@@ -61,6 +61,8 @@ public class TeamRankActivity extends BaseActivity {
         setupEvent();
         setValues();
 
+        getSupportActionBar().hide();
+
 
     }
 

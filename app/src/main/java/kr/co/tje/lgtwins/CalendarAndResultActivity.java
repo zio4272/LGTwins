@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -66,6 +67,7 @@ public class CalendarAndResultActivity extends BaseActivity {
         bindView();
         setupEvent();
         setValues();
+        getSupportActionBar().hide();
 
     }
 
@@ -73,8 +75,8 @@ public class CalendarAndResultActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        CalendarAndResult task = new CalendarAndResult();
-        task.execute();
+//        CalendarAndResult task = new CalendarAndResult();
+//        task.execute();
     }
 
 
@@ -193,7 +195,9 @@ public class CalendarAndResultActivity extends BaseActivity {
         LayoutInflater inf = LayoutInflater.from(mContext);
 
         for (CalendarResult cr : results) {
+
             View v = inf.inflate(R.layout.calendar_result_list_item, null);
+
             this.loseResultTxt = (TextView) v.findViewById(R.id.loseResultTxt);
             this.winResultTxt = (TextView) v.findViewById(R.id.winResultTxt);
             this.scoreTxt = (TextView) v.findViewById(R.id.scoreTxt);
@@ -258,6 +262,13 @@ public class CalendarAndResultActivity extends BaseActivity {
 
     @Override
     public void setupEvent() {
+
+        winLoseResultLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "준비중인 기능 입니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         yearSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
