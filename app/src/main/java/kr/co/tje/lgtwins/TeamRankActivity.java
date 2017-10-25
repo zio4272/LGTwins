@@ -24,6 +24,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -277,8 +278,9 @@ public class TeamRankActivity extends BaseActivity {
     public void setValues() {
 
 
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
-        for (int i = 1991; i <= 2017; i++) {
+        for (int i = 1991; i <= currentYear; i++) {
             years.add(String.format(Locale.KOREA, "%d", i));
         }
 
@@ -288,8 +290,12 @@ public class TeamRankActivity extends BaseActivity {
 
 
 
-        // 27번째 2017에서 시작
-        spinner.setSelection(26);
+
+        String currentYearStr = String.format(Locale.KOREA, "%d", currentYear);
+        int index = years.indexOf(currentYearStr);
+
+        // 현재년도에 따라 바뀜 - 현재 년도를 시작화면으로
+        spinner.setSelection(index);
 
 
 
