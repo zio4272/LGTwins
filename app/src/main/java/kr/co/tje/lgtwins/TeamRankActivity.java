@@ -70,8 +70,8 @@ public class TeamRankActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        NaverBaseballTeamRank task = new NaverBaseballTeamRank();
-        task.execute();
+//        NaverBaseballTeamRank task = new NaverBaseballTeamRank();
+//        task.execute();
     }
 
 
