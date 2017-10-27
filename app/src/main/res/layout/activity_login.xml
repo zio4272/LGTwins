@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F7F7F7"
     android:orientation="vertical"
-    tools:context="kr.co.tje.lgtwins.LoginActivity">
+    tools:context="kr.co.tje.ilovelgtwins.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"

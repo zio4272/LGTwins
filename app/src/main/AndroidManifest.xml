@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kr.co.tje.lgtwins">
+    package="kr.co.tje.ilovelgtwins">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,21 +17,21 @@
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
 
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".SplashActivity" >
+        <activity android:name="kr.co.tje.ilovelgtwins.MainActivity"/>
+        <activity android:name="kr.co.tje.ilovelgtwins.SplashActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".PostPopupActivity" />
-        <activity android:name=".PostDetailViewActivity" />
-        <activity android:name=".NoticeAndEventPopupActivity" />
-        <activity android:name=".NoticeAndEventDetailViewActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".TeamRankActivity" />
-        <activity android:name=".CalendarAndResultActivity"></activity>
+        <activity android:name="kr.co.tje.ilovelgtwins.PostPopupActivity" />
+        <activity android:name="kr.co.tje.ilovelgtwins.PostDetailViewActivity" />
+        <activity android:name="kr.co.tje.ilovelgtwins.NoticeAndEventPopupActivity" />
+        <activity android:name="kr.co.tje.ilovelgtwins.NoticeAndEventDetailViewActivity" />
+        <activity android:name="kr.co.tje.ilovelgtwins.LoginActivity" />
+        <activity android:name="kr.co.tje.ilovelgtwins.TeamRankActivity" />
+        <activity android:name="kr.co.tje.ilovelgtwins.CalendarAndResultActivity"></activity>
     </application>
 
 </manifest>
