@@ -25,16 +25,17 @@ public class ServerUtil {
     }
 
 
-    public static void sign_up(final Context context,  final JsonResponseHandler handler) {
+    public static void sign_up(final Context context,  final String loginId, final String loginPw, final String name, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url =  BASE_URL + "lgtwins/sign_up";
+        String url =  BASE_URL + "lg/sign_up";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
-//        Map<String, String> data = new HashMap<String, String>();
-////        data.put("version", "1");
-////        data.put("lat", "37.610465");
-//        data.put("lon", "126.928954");
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("loginId", loginId);
+        data.put("loginPw", loginPw);
+        data.put("name", name);
+
 
         AsyncHttpRequest.get(context, url,  null, true, new AsyncHttpRequest.HttpResponseHandler() {
 
