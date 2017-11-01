@@ -16,12 +16,56 @@ public class ServerUtil {
 
     private static final String TAG = ServerUtil.class.getSimpleName();
 
-    private final static String BASE_URL = "http://tdd.team/"; // 라이브서버
+    private final static String BASE_URL = "http://13.124.190.61/"; // 라이브서버
 //    private final static String BASE_URL = "http://share-tdd.com/"; // 개발서버
 
 //    JSON 처리 부분 인터페이스.
     public interface JsonResponseHandler {
         void onResponse(JSONObject json);
+    }
+
+
+    public static void sign_up(final Context context,  final JsonResponseHandler handler) {
+//        기능에 따라 매번 주소를 다르게 적어줘야함.
+        String url =  BASE_URL + "lgtwins/sign_up";
+
+//        기능을 사용하기 위해 필요한 데이터를 담는 부분.
+
+//        Map<String, String> data = new HashMap<String, String>();
+////        data.put("version", "1");
+////        data.put("lat", "37.610465");
+//        data.put("lon", "126.928954");
+
+        AsyncHttpRequest.get(context, url,  null, true, new AsyncHttpRequest.HttpResponseHandler() {
+
+            @Override
+            public boolean onPrepare() {
+                return true;
+            }
+
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response);
+                try {
+                    JSONObject json = new JSONObject(response);
+
+                    if (handler != null)
+                        handler.onResponse(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onCancelled() {
+
+            }
+
+        });
     }
 
 

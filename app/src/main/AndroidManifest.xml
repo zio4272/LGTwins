@@ -12,26 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <provider android:authorities="com.facebook.app.FacebookContentProvider1648925831797110"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
+            android:authorities="com.facebook.app.FacebookContentProvider1648925831797110"
+            android:exported="true" />
 
-        <activity android:name="kr.co.tje.ilovelgtwins.MainActivity"/>
-        <activity android:name="kr.co.tje.ilovelgtwins.SplashActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name="kr.co.tje.ilovelgtwins.PostPopupActivity" />
-        <activity android:name="kr.co.tje.ilovelgtwins.PostDetailViewActivity" />
-        <activity android:name="kr.co.tje.ilovelgtwins.NoticeAndEventPopupActivity" />
-        <activity android:name="kr.co.tje.ilovelgtwins.NoticeAndEventDetailViewActivity" />
-        <activity android:name="kr.co.tje.ilovelgtwins.LoginActivity" />
-        <activity android:name="kr.co.tje.ilovelgtwins.TeamRankActivity" />
-        <activity android:name="kr.co.tje.ilovelgtwins.CalendarAndResultActivity"></activity>
+        <activity android:name=".PostPopupActivity" />
+        <activity android:name=".PostDetailViewActivity" />
+        <activity android:name=".NoticeAndEventPopupActivity" />
+        <activity android:name=".NoticeAndEventDetailViewActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".TeamRankActivity" />
+        <activity android:name=".CalendarAndResultActivity" />
+        <activity android:name=".ReplyActivity" />
+        <activity android:name=".SignupActivity"></activity>
     </application>
 
 </manifest>
