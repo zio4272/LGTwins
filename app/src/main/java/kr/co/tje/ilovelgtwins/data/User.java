@@ -1,5 +1,8 @@
 package kr.co.tje.ilovelgtwins.data;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 /**
@@ -16,6 +19,26 @@ public class User implements Serializable {
     private String phonenum;
     private String useremail;
     private String profileurl;
+
+    public static User getUserFromJson (JSONObject jsonObject) {
+
+        User user = new User();
+
+        try {
+            user.loginId = jsonObject.getString("loginId");
+            user.loginPw = jsonObject.getString("loginPw");
+            user.username = jsonObject.getString("username");
+            user.gender = jsonObject.getInt("gender");
+            user.phonenum = jsonObject.getString("phonenum");
+            user.useremail = jsonObject.getString("useremail");
+            user.profileurl = jsonObject.getString("profileurl");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+
+    }
 
     public User() {
     }
