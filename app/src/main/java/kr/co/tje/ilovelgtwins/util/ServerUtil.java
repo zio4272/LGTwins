@@ -19,15 +19,15 @@ public class ServerUtil {
     private final static String BASE_URL = "http://13.124.190.61/"; // 라이브서버
 //    private final static String BASE_URL = "http://share-tdd.com/"; // 개발서버
 
-//    JSON 처리 부분 인터페이스.
+    //    JSON 처리 부분 인터페이스.
     public interface JsonResponseHandler {
         void onResponse(JSONObject json);
     }
 
 
-    public static void sign_up(final Context context,  final String loginId, final String loginPw, final String name, final JsonResponseHandler handler) {
+    public static void sign_up(final Context context, final String loginId, final String loginPw, final String name, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url =  BASE_URL + "lg/sign_up";
+        String url = BASE_URL + "lg/sign_up";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -37,7 +37,7 @@ public class ServerUtil {
         data.put("name", name);
 
 
-        AsyncHttpRequest.get(context, url,  null, true, new AsyncHttpRequest.HttpResponseHandler() {
+        AsyncHttpRequest.get(context, url, null, true, new AsyncHttpRequest.HttpResponseHandler() {
 
             @Override
             public boolean onPrepare() {
@@ -56,6 +56,7 @@ public class ServerUtil {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFinish() {
 
@@ -70,9 +71,9 @@ public class ServerUtil {
     }
 
 
-    public static void FacebookAccessToken(final Context context,  final JsonResponseHandler handler) {
+    public static void FacebookAccessToken(final Context context, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url =  "https://graph.facebook.com/oauth/access_token?client_id=1648925831797110&client_secret=af55a6b5cb9fb9d5bfe354c9f0489957&grant_type=client_credentials";
+        String url = "https://graph.facebook.com/oauth/access_token?client_id=1648925831797110&client_secret=af55a6b5cb9fb9d5bfe354c9f0489957&grant_type=client_credentials";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -81,7 +82,7 @@ public class ServerUtil {
 ////        data.put("lat", "37.610465");
 //        data.put("lon", "126.928954");
 
-        AsyncHttpRequest.get(context, url,  null, true, new AsyncHttpRequest.HttpResponseHandler() {
+        AsyncHttpRequest.get(context, url, null, true, new AsyncHttpRequest.HttpResponseHandler() {
 
             @Override
             public boolean onPrepare() {
@@ -100,6 +101,7 @@ public class ServerUtil {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFinish() {
 
@@ -114,9 +116,7 @@ public class ServerUtil {
     }
 
 
-
     // 사용자 관련 함수 모음
-
 
 
 //    1. 원하는 기능을 제공하는 API 주소 알아내자.
@@ -125,7 +125,7 @@ public class ServerUtil {
 
     public static void getCurrentWeatherFromServer(final Context context, double lat, double lon, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url =  "http://apis.skplanetx.com/weather/current/minutely?version=1&lat=" + lat + "&lon=" + lon;
+        String url = "http://apis.skplanetx.com/weather/current/minutely?version=1&lat=" + lat + "&lon=" + lon;
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
@@ -134,7 +134,7 @@ public class ServerUtil {
 //        data.put("lat", "37.610465");
 //        data.put("lon", "126.928954");
 
-        AsyncHttpRequest.get(context, url,  data, true, new AsyncHttpRequest.HttpResponseHandler() {
+        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
 
             @Override
             public boolean onPrepare() {
@@ -153,6 +153,7 @@ public class ServerUtil {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFinish() {
 
