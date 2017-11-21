@@ -8,60 +8,86 @@
     android:padding="10dp"
     tools:context="kr.co.tje.ilovelgtwins.SignupActivity">
 
+
+
     <EditText
         android:id="@+id/idEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="아이디를 입력해주세요"/>
+        android:hint="아이디를 입력해주세요" />
 
     <EditText
         android:id="@+id/pwEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="비밀번호를 입력해주세요"/>
+        android:hint="비밀번호를 입력해주세요" />
 
     <EditText
         android:id="@+id/nameEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="이름을 입력해주세요"/>
+        android:hint="이름을 입력해주세요" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/manRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="남자"
+                />
+            <RadioButton
+                android:id="@+id/womanRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="여자"/>
+        </RadioGroup>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/phoneNumEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="전화번호를 입력해주세요"/>
+        android:hint="전화번호를 입력해주세요" />
 
     <EditText
         android:id="@+id/emailEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="이메일을 입력해주세요"/>
+        android:hint="이메일을 입력해주세요" />
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@mipmap/ic_launcher_round" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="프로필이미지"/>
+            android:text="프로필이미지" />
 
     </LinearLayout>
-
 
 
     <Button
         android:id="@+id/okBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="등록"/>
+        android:text="등록" />
 
 
 </LinearLayout>

@@ -16,7 +16,7 @@ public class ServerUtil {
 
     private static final String TAG = ServerUtil.class.getSimpleName();
 
-    private final static String BASE_URL = "http://13.124.190.61/"; // 라이브서버
+    private final static String BASE_URL = "http://192.168.20.119:8080/"; // 라이브서버
 //    private final static String BASE_URL = "http://share-tdd.com/"; // 개발서버
 
     //    JSON 처리 부분 인터페이스.
@@ -27,17 +27,66 @@ public class ServerUtil {
 
     public static void login(final Context context, final String loginId, final String loginPw, final JsonResponseHandler handler) {
 //        기능에 따라 매번 주소를 다르게 적어줘야함.
-        String url = BASE_URL + "lg/sign_up";
+        String url = BASE_URL + "tje/login_user";
 
 //        기능을 사용하기 위해 필요한 데이터를 담는 부분.
 
         Map<String, String> data = new HashMap<String, String>();
-        data.put("loginId", loginId);
-        data.put("loginPw", loginPw);
+        data.put("login_id", loginId);
+        data.put("login_pw", loginPw);
 
 
+        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
 
-        AsyncHttpRequest.get(context, url, null, true, new AsyncHttpRequest.HttpResponseHandler() {
+            @Override
+            public boolean onPrepare() {
+                return true;
+            }
+
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response);
+                try {
+                    JSONObject json = new JSONObject(response);
+
+                    if (handler != null)
+                        handler.onResponse(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onCancelled() {
+
+            }
+
+        });
+    }
+
+
+    public static void insert_user(final Context context, final String loginId, final String loginPw, final String username, final int gender, final String phonenum, final String useremail, final String profileurl, final JsonResponseHandler handler) {
+//        기능에 따라 매번 주소를 다르게 적어줘야함.
+        String url = BASE_URL + "tje/insert_user";
+
+//        기능을 사용하기 위해 필요한 데이터를 담는 부분.
+
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("login_id", loginId);
+        data.put("login_pw", loginPw);
+        data.put("user_name", username);
+        data.put("gender", gender + "");
+        data.put("phone_num", phonenum);
+        data.put("user_email", useremail);
+        data.put("profile_url", profileurl);
+
+
+        AsyncHttpRequest.get(context, url, data, true, new AsyncHttpRequest.HttpResponseHandler() {
 
             @Override
             public boolean onPrepare() {

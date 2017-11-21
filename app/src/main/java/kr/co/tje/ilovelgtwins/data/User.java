@@ -31,7 +31,7 @@ public class User implements Serializable {
             user.gender = jsonObject.getInt("gender");
             user.phonenum = jsonObject.getString("phonenum");
             user.useremail = jsonObject.getString("useremail");
-            user.profileurl = jsonObject.getString("profileurl");
+            user.profileurl = jsonObject.getString("profileURL");
         } catch (JSONException e) {
             e.printStackTrace();
         }
